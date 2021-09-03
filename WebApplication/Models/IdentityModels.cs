@@ -21,7 +21,7 @@ namespace WebApplication.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LibraryConnection", throwIfV1Schema: false)
         {
         }
 

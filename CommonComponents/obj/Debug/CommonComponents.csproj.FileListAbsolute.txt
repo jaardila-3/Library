@@ -1,0 +1,6 @@
+C:\Users\jorge\Source\Repos\Library\CommonComponents\bin\Debug\CommonComponents.dll
+C:\Users\jorge\Source\Repos\Library\CommonComponents\bin\Debug\CommonComponents.pdb
+C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.csproj.AssemblyReference.cache
+C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.csproj.CoreCompileInputs.cache
+C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.dll
+C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.pdb

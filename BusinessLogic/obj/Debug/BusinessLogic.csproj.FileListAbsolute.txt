@@ -1,0 +1,11 @@
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\CommonComponents.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\CommonComponents.pdb
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.pdb
