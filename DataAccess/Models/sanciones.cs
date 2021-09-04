@@ -9,9 +9,7 @@
 
 namespace DataAccess.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class sanciones
     {
         public System.Guid san_codigo { get; set; }

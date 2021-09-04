@@ -9,9 +9,8 @@
 
 namespace DataAccess.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class prestamos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
