@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +50,68 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\areas.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\detalle_prestamos.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\libros.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelsLibrary.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelsLibrary.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelsLibrary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelsLibrary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\prestamos.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sanciones.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuarios.cs">
+      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\ModelsLibrary.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelsLibrary.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Models\ModelsLibrary.edmx.diagram">
+      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\ModelsLibrary.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelsLibrary.Context.cs</LastGenOutput>
+      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelsLibrary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+      <LastGenOutput>ModelsLibrary.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
