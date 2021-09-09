@@ -3,17 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogic.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private LibraryContext _context;
+        private DBContext _context;
         private DbSet<TEntity> _dbSet;
 
-        public Repository(LibraryContext context)
+        public Repository(DBContext context)
         {
             _context = context;
             _dbSet = context.Set<TEntity>();

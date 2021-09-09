@@ -9,25 +9,26 @@
 
 namespace DataAccess.Models
 {
+    using System;
     using System.Collections.Generic;
-
-    public partial class prestamos
+    
+    public partial class Prestamos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public prestamos()
+        public Prestamos()
         {
-            this.detalle_prestamos = new HashSet<detalle_prestamos>();
-            this.sanciones = new HashSet<sanciones>();
+            this.DetallePrestamos = new HashSet<DetallePrestamos>();
+            this.Sanciones = new HashSet<Sanciones>();
         }
     
         public System.Guid pre_codigo { get; set; }
         public System.DateTime pre_fecha { get; set; }
-        public int pre_usuario { get; set; }
+        public string pre_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_prestamos> detalle_prestamos { get; set; }
-        public virtual usuarios usuarios { get; set; }
+        public virtual ICollection<DetallePrestamos> DetallePrestamos { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sanciones> sanciones { get; set; }
+        public virtual ICollection<Sanciones> Sanciones { get; set; }
     }
 }

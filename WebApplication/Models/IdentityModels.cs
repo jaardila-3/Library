@@ -18,10 +18,11 @@ namespace WebApplication.Models
         }
     }
 
+    //esta clase es para la creacion y llenado de las tablas por defecto de AspNetUser...
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("LibraryConnection", throwIfV1Schema: false)
+            : base("DBContext", throwIfV1Schema: false)
         {
         }
 

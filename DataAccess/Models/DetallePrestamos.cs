@@ -10,8 +10,9 @@
 namespace DataAccess.Models
 {
     using System;
-
-    public partial class detalle_prestamos
+    using System.Collections.Generic;
+    
+    public partial class DetallePrestamos
     {
         public System.Guid dtp_prestamo { get; set; }
         public System.Guid dtp_libro { get; set; }
@@ -19,7 +20,7 @@ namespace DataAccess.Models
         public System.DateTime dtp_fecha_fin { get; set; }
         public Nullable<System.DateTime> dtp_fecha_dev { get; set; }
     
-        public virtual libros libros { get; set; }
-        public virtual prestamos prestamos { get; set; }
+        public virtual Libros Libros { get; set; }
+        public virtual Prestamos Prestamos { get; set; }
     }
 }

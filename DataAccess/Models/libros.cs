@@ -9,14 +9,15 @@
 
 namespace DataAccess.Models
 {
+    using System;
     using System.Collections.Generic;
-
-    public partial class libros
+    
+    public partial class Libros
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public libros()
+        public Libros()
         {
-            this.detalle_prestamos = new HashSet<detalle_prestamos>();
+            this.DetallePrestamos = new HashSet<DetallePrestamos>();
         }
     
         public System.Guid lib_codigo { get; set; }
@@ -26,8 +27,8 @@ namespace DataAccess.Models
         public string lib_editorial { get; set; }
         public System.Guid lib_area { get; set; }
     
-        public virtual areas areas { get; set; }
+        public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_prestamos> detalle_prestamos { get; set; }
+        public virtual ICollection<DetallePrestamos> DetallePrestamos { get; set; }
     }
 }

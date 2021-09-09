@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a847cb5a1094b058c5476d0bb390dac" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryModel.Areas" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.AspNetRoles" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.AspNetUsers" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.DetallePrestamos" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Libros" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Prestamos" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Sanciones" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.Usuarios" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="LibraryModel.FK_lib_area" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.FK_dtp_libro" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.FK_dtp_prestamo" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.FK_pre_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.FK_san_prestamo" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

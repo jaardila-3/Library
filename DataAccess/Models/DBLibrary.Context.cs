@@ -9,13 +9,14 @@
 
 namespace DataAccess.Models
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class LibraryContext : DbContext
+    
+    public partial class DBContext : DbContext
     {
-        public LibraryContext()
-            : base("name=LibraryContext")
+        public DBContext()
+            : base("name=DBContext")
         {
         }
     
@@ -24,11 +25,13 @@ namespace DataAccess.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<areas> Areas { get; set; }
-        public virtual DbSet<detalle_prestamos> DetallePrestamos { get; set; }
-        public virtual DbSet<libros> Libros { get; set; }
-        public virtual DbSet<prestamos> Prestamos { get; set; }
-        public virtual DbSet<sanciones> Sanciones { get; set; }
-        public virtual DbSet<usuarios> Usuarios { get; set; }
+        public virtual DbSet<Areas> Areas { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<DetallePrestamos> DetallePrestamos { get; set; }
+        public virtual DbSet<Libros> Libros { get; set; }
+        public virtual DbSet<Prestamos> Prestamos { get; set; }
+        public virtual DbSet<Sanciones> Sanciones { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

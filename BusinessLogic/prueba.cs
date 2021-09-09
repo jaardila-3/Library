@@ -6,9 +6,9 @@ namespace BusinessLogic
 {
     public class prueba
     {
-        public List<usuarios> ListarUsuarios()
+        public List<Usuarios> ListarUsuarios()
         {
-            using (var db = new LibraryContext())
+            using (var db = new DBContext())
             {
                 var lista = db.Usuarios.ToList();
                 return lista;

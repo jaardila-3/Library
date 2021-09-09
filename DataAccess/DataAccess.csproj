@@ -50,68 +50,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\areas.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\Areas.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\detalle_prestamos.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\libros.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelsLibrary.Context.cs">
+    <Compile Include="Models\DBLibrary.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelsLibrary.Context.tt</DependentUpon>
+      <DependentUpon>DBLibrary.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelsLibrary.cs">
+    <Compile Include="Models\DBLibrary.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelsLibrary.Designer.cs">
+    <Compile Include="Models\DBLibrary.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+      <DependentUpon>DBLibrary.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\prestamos.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\DetallePrestamos.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sanciones.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\Libros.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usuarios.cs">
-      <DependentUpon>ModelsLibrary.tt</DependentUpon>
+    <Compile Include="Models\Prestamos.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sanciones.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>DBLibrary.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\ModelsLibrary.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelsLibrary.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Models\ModelsLibrary.edmx.diagram">
-      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
+    <EntityDeploy Include="Models\DBLibrary.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBLibrary.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\DBLibrary.edmx.diagram">
+      <DependentUpon>DBLibrary.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\ModelsLibrary.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelsLibrary.Context.cs</LastGenOutput>
-      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelsLibrary.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelsLibrary.edmx</DependentUpon>
-      <LastGenOutput>ModelsLibrary.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Models\DBLibrary.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBLibrary.edmx</DependentUpon>
+      <LastGenOutput>DBLibrary.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\DBLibrary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBLibrary.edmx</DependentUpon>
+      <LastGenOutput>DBLibrary.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,14 +12,18 @@ namespace DataAccess.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sanciones
+    public partial class AspNetRoles
     {
-        public System.Guid san_codigo { get; set; }
-        public System.Guid san_prestamo { get; set; }
-        public int san_dias_sancion { get; set; }
-        public System.DateTime san_fecha_inicio { get; set; }
-        public System.DateTime san_fecha_fin { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AspNetRoles()
+        {
+            this.AspNetUsers = new HashSet<AspNetUsers>();
+        }
     
-        public virtual Prestamos Prestamos { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

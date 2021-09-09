@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="are_codigo" />
+          </Key>
+          <Property Name="are_codigo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="are_nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="are_tiempo" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallePrestamos">
+          <Key>
+            <PropertyRef Name="dtp_prestamo" />
+            <PropertyRef Name="dtp_libro" />
+          </Key>
+          <Property Name="dtp_prestamo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dtp_libro" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dtp_cantidad" Type="int" Nullable="false" />
+          <Property Name="dtp_fecha_fin" Type="datetime" Nullable="false" />
+          <Property Name="dtp_fecha_dev" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Libros">
+          <Key>
+            <PropertyRef Name="lib_codigo" />
+          </Key>
+          <Property Name="lib_codigo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="lib_nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lib_num_pag" Type="int" Nullable="false" />
+          <Property Name="lib_autor" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lib_editorial" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lib_area" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="pre_codigo" />
+          </Key>
+          <Property Name="pre_codigo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="pre_fecha" Type="datetime" Nullable="false" />
+          <Property Name="pre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sanciones">
+          <Key>
+            <PropertyRef Name="san_codigo" />
+          </Key>
+          <Property Name="san_codigo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="san_prestamo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="san_dias_sancion" Type="int" Nullable="false" />
+          <Property Name="san_fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="san_fecha_fin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usu_documento" />
+          </Key>
+          <Property Name="usu_documento" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_direccion" Type="text" Nullable="false" />
+          <Property Name="usu_telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="usu_correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="usu_estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtp_libro">
+          <End Role="Libros" Type="Self.Libros" Multiplicity="1" />
+          <End Role="DetallePrestamos" Type="Self.DetallePrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libros">
+              <PropertyRef Name="lib_codigo" />
+            </Principal>
+            <Dependent Role="DetallePrestamos">
+              <PropertyRef Name="dtp_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtp_prestamo">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
+          <End Role="DetallePrestamos" Type="Self.DetallePrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="pre_codigo" />
+            </Principal>
+            <Dependent Role="DetallePrestamos">
+              <PropertyRef Name="dtp_prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lib_area">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="are_codigo" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="lib_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pre_usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usu_documento" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="pre_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_prestamo">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
+          <End Role="Sanciones" Type="Self.Sanciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="pre_codigo" />
+            </Principal>
+            <Dependent Role="Sanciones">
+              <PropertyRef Name="san_prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryModelStoreContainer">
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallePrestamos" EntityType="Self.DetallePrestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanciones" EntityType="Self.Sanciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtp_libro" Association="Self.FK_dtp_libro">
+            <End Role="Libros" EntitySet="Libros" />
+            <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtp_prestamo" Association="Self.FK_dtp_prestamo">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lib_area" Association="Self.FK_lib_area">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pre_usuario" Association="Self.FK_pre_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_prestamo" Association="Self.FK_san_prestamo">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="Sanciones" EntitySet="Sanciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="are_codigo" />
+          </Key>
+          <Property Name="are_codigo" Type="Guid" Nullable="false" />
+          <Property Name="are_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="are_tiempo" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_lib_area" FromRole="Areas" ToRole="Libros" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="DetallePrestamos">
+          <Key>
+            <PropertyRef Name="dtp_prestamo" />
+            <PropertyRef Name="dtp_libro" />
+          </Key>
+          <Property Name="dtp_prestamo" Type="Guid" Nullable="false" />
+          <Property Name="dtp_libro" Type="Guid" Nullable="false" />
+          <Property Name="dtp_cantidad" Type="Int32" Nullable="false" />
+          <Property Name="dtp_fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dtp_fecha_dev" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Libros" Relationship="Self.FK_dtp_libro" FromRole="DetallePrestamos" ToRole="Libros" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_dtp_prestamo" FromRole="DetallePrestamos" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="Libros">
+          <Key>
+            <PropertyRef Name="lib_codigo" />
+          </Key>
+          <Property Name="lib_codigo" Type="Guid" Nullable="false" />
+          <Property Name="lib_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lib_num_pag" Type="Int32" Nullable="false" />
+          <Property Name="lib_autor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lib_editorial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lib_area" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Areas" Relationship="Self.FK_lib_area" FromRole="Libros" ToRole="Areas" />
+          <NavigationProperty Name="DetallePrestamos" Relationship="Self.FK_dtp_libro" FromRole="Libros" ToRole="DetallePrestamos" />
+        </EntityType>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="pre_codigo" />
+          </Key>
+          <Property Name="pre_codigo" Type="Guid" Nullable="false" />
+          <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DetallePrestamos" Relationship="Self.FK_dtp_prestamo" FromRole="Prestamos" ToRole="DetallePrestamos" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_pre_usuario" FromRole="Prestamos" ToRole="Usuarios" />
+          <NavigationProperty Name="Sanciones" Relationship="Self.FK_san_prestamo" FromRole="Prestamos" ToRole="Sanciones" />
+        </EntityType>
+        <EntityType Name="Sanciones">
+          <Key>
+            <PropertyRef Name="san_codigo" />
+          </Key>
+          <Property Name="san_codigo" Type="Guid" Nullable="false" />
+          <Property Name="san_prestamo" Type="Guid" Nullable="false" />
+          <Property Name="san_dias_sancion" Type="Int32" Nullable="false" />
+          <Property Name="san_fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="san_fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_san_prestamo" FromRole="Sanciones" ToRole="Prestamos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="usu_documento" />
+          </Key>
+          <Property Name="usu_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usu_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usu_direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usu_telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usu_correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="usu_estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Prestamos" Relationship="Self.FK_pre_usuario" FromRole="Usuarios" ToRole="Prestamos" />
+        </EntityType>
+        <Association Name="FK_lib_area">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="Libros" Type="Self.Libros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="are_codigo" />
+            </Principal>
+            <Dependent Role="Libros">
+              <PropertyRef Name="lib_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtp_libro">
+          <End Role="Libros" Type="Self.Libros" Multiplicity="1" />
+          <End Role="DetallePrestamos" Type="Self.DetallePrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Libros">
+              <PropertyRef Name="lib_codigo" />
+            </Principal>
+            <Dependent Role="DetallePrestamos">
+              <PropertyRef Name="dtp_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dtp_prestamo">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
+          <End Role="DetallePrestamos" Type="Self.DetallePrestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="pre_codigo" />
+            </Principal>
+            <Dependent Role="DetallePrestamos">
+              <PropertyRef Name="dtp_prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pre_usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="usu_documento" />
+            </Principal>
+            <Dependent Role="Prestamos">
+              <PropertyRef Name="pre_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_san_prestamo">
+          <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="1" />
+          <End Role="Sanciones" Type="Self.Sanciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prestamos">
+              <PropertyRef Name="pre_codigo" />
+            </Principal>
+            <Dependent Role="Sanciones">
+              <PropertyRef Name="san_prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Areas" EntityType="Self.Areas" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="DetallePrestamos" EntityType="Self.DetallePrestamos" />
+          <EntitySet Name="Libros" EntityType="Self.Libros" />
+          <EntitySet Name="Prestamos" EntityType="Self.Prestamos" />
+          <EntitySet Name="Sanciones" EntityType="Self.Sanciones" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_lib_area" Association="Self.FK_lib_area">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="Libros" EntitySet="Libros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtp_libro" Association="Self.FK_dtp_libro">
+            <End Role="Libros" EntitySet="Libros" />
+            <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dtp_prestamo" Association="Self.FK_dtp_prestamo">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pre_usuario" Association="Self.FK_pre_usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Prestamos" EntitySet="Prestamos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_san_prestamo" Association="Self.FK_san_prestamo">
+            <End Role="Prestamos" EntitySet="Prestamos" />
+            <End Role="Sanciones" EntitySet="Sanciones" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="DBContext">
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="LibraryModel.Areas">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="are_codigo" ColumnName="are_codigo" />
+                <ScalarProperty Name="are_nombre" ColumnName="are_nombre" />
+                <ScalarProperty Name="are_tiempo" ColumnName="are_tiempo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="LibraryModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="LibraryModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePrestamos">
+            <EntityTypeMapping TypeName="LibraryModel.DetallePrestamos">
+              <MappingFragment StoreEntitySet="DetallePrestamos">
+                <ScalarProperty Name="dtp_prestamo" ColumnName="dtp_prestamo" />
+                <ScalarProperty Name="dtp_libro" ColumnName="dtp_libro" />
+                <ScalarProperty Name="dtp_cantidad" ColumnName="dtp_cantidad" />
+                <ScalarProperty Name="dtp_fecha_fin" ColumnName="dtp_fecha_fin" />
+                <ScalarProperty Name="dtp_fecha_dev" ColumnName="dtp_fecha_dev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libros">
+            <EntityTypeMapping TypeName="LibraryModel.Libros">
+              <MappingFragment StoreEntitySet="Libros">
+                <ScalarProperty Name="lib_codigo" ColumnName="lib_codigo" />
+                <ScalarProperty Name="lib_nombre" ColumnName="lib_nombre" />
+                <ScalarProperty Name="lib_num_pag" ColumnName="lib_num_pag" />
+                <ScalarProperty Name="lib_autor" ColumnName="lib_autor" />
+                <ScalarProperty Name="lib_editorial" ColumnName="lib_editorial" />
+                <ScalarProperty Name="lib_area" ColumnName="lib_area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prestamos">
+            <EntityTypeMapping TypeName="LibraryModel.Prestamos">
+              <MappingFragment StoreEntitySet="Prestamos">
+                <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
+                <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+                <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanciones">
+            <EntityTypeMapping TypeName="LibraryModel.Sanciones">
+              <MappingFragment StoreEntitySet="Sanciones">
+                <ScalarProperty Name="san_codigo" ColumnName="san_codigo" />
+                <ScalarProperty Name="san_prestamo" ColumnName="san_prestamo" />
+                <ScalarProperty Name="san_dias_sancion" ColumnName="san_dias_sancion" />
+                <ScalarProperty Name="san_fecha_inicio" ColumnName="san_fecha_inicio" />
+                <ScalarProperty Name="san_fecha_fin" ColumnName="san_fecha_fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="LibraryModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="usu_documento" ColumnName="usu_documento" />
+                <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
+                <ScalarProperty Name="usu_direccion" ColumnName="usu_direccion" />
+                <ScalarProperty Name="usu_telefono" ColumnName="usu_telefono" />
+                <ScalarProperty Name="usu_correo" ColumnName="usu_correo" />
+                <ScalarProperty Name="usu_estado" ColumnName="usu_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

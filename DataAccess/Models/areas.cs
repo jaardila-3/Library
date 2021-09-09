@@ -9,14 +9,15 @@
 
 namespace DataAccess.Models
 {
+    using System;
     using System.Collections.Generic;
-
-    public partial class areas
+    
+    public partial class Areas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public areas()
+        public Areas()
         {
-            this.libros = new HashSet<libros>();
+            this.Libros = new HashSet<Libros>();
         }
     
         public System.Guid are_codigo { get; set; }
@@ -24,6 +25,6 @@ namespace DataAccess.Models
         public System.DateTime are_tiempo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<libros> libros { get; set; }
+        public virtual ICollection<Libros> Libros { get; set; }
     }
 }

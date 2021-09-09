@@ -12,22 +12,28 @@ namespace DataAccess.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuarios
+    public partial class AspNetUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuarios()
+        public AspNetUsers()
         {
-            this.Prestamos = new HashSet<Prestamos>();
+            this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
-        public string usu_documento { get; set; }
-        public string usu_nombre { get; set; }
-        public string usu_direccion { get; set; }
-        public string usu_telefono { get; set; }
-        public string usu_correo { get; set; }
-        public bool usu_estado { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string UserName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prestamos> Prestamos { get; set; }
+        public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }
