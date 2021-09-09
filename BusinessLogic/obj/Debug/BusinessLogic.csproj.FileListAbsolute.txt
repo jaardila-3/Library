@@ -9,3 +9,9 @@ C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.csproj
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.dll
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\BusinessLogic.dll.config
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\DataAccess.dll.config
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml

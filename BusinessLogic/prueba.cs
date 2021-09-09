@@ -6,11 +6,12 @@ namespace BusinessLogic
 {
     public class prueba
     {
-        public List<areas> ListarAreas()
+        public List<usuarios> ListarUsuarios()
         {
             using (var db = new LibraryContext())
             {
-                return db.Areas.ToList();
+                var lista = db.Usuarios.ToList();
+                return lista;
             }
         }
 

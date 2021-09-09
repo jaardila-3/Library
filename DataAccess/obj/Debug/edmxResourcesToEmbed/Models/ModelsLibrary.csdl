@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="areas">
+    <Key>
+      <PropertyRef Name="are_codigo" />
+    </Key>
+    <Property Name="are_codigo" Type="Guid" Nullable="false" />
+    <Property Name="are_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="are_tiempo" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="libros" Relationship="Self.FK_lib_area" FromRole="areas" ToRole="libros" />
+  </EntityType>
+  <EntityType Name="detalle_prestamos">
+    <Key>
+      <PropertyRef Name="dtp_prestamo" />
+      <PropertyRef Name="dtp_libro" />
+    </Key>
+    <Property Name="dtp_prestamo" Type="Guid" Nullable="false" />
+    <Property Name="dtp_libro" Type="Guid" Nullable="false" />
+    <Property Name="dtp_cantidad" Type="Int32" Nullable="false" />
+    <Property Name="dtp_fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dtp_fecha_dev" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="libros" Relationship="Self.FK_dtp_libro" FromRole="detalle_prestamos" ToRole="libros" />
+    <NavigationProperty Name="prestamos" Relationship="Self.FK_dtp_prestamo" FromRole="detalle_prestamos" ToRole="prestamos" />
+  </EntityType>
+  <EntityType Name="libros">
+    <Key>
+      <PropertyRef Name="lib_codigo" />
+    </Key>
+    <Property Name="lib_codigo" Type="Guid" Nullable="false" />
+    <Property Name="lib_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lib_num_pag" Type="Int32" Nullable="false" />
+    <Property Name="lib_autor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lib_editorial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lib_area" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="areas" Relationship="Self.FK_lib_area" FromRole="libros" ToRole="areas" />
+    <NavigationProperty Name="detalle_prestamos" Relationship="Self.FK_dtp_libro" FromRole="libros" ToRole="detalle_prestamos" />
+  </EntityType>
+  <EntityType Name="prestamos">
+    <Key>
+      <PropertyRef Name="pre_codigo" />
+    </Key>
+    <Property Name="pre_codigo" Type="Guid" Nullable="false" />
+    <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="pre_usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="detalle_prestamos" Relationship="Self.FK_dtp_prestamo" FromRole="prestamos" ToRole="detalle_prestamos" />
+    <NavigationProperty Name="usuarios" Relationship="Self.FK_pre_usuario" FromRole="prestamos" ToRole="usuarios" />
+    <NavigationProperty Name="sanciones" Relationship="Self.FK_san_prestamo" FromRole="prestamos" ToRole="sanciones" />
+  </EntityType>
+  <EntityType Name="sanciones">
+    <Key>
+      <PropertyRef Name="san_codigo" />
+    </Key>
+    <Property Name="san_codigo" Type="Guid" Nullable="false" />
+    <Property Name="san_prestamo" Type="Guid" Nullable="false" />
+    <Property Name="san_dias_sancion" Type="Int32" Nullable="false" />
+    <Property Name="san_fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="san_fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="prestamos" Relationship="Self.FK_san_prestamo" FromRole="sanciones" ToRole="prestamos" />
+  </EntityType>
+  <EntityType Name="usuarios">
+    <Key>
+      <PropertyRef Name="usu_documento" />
+    </Key>
+    <Property Name="usu_documento" Type="Int32" Nullable="false" />
+    <Property Name="usu_nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usu_direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usu_telefono" Type="Int32" Nullable="false" />
+    <Property Name="usu_correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usu_estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="prestamos" Relationship="Self.FK_pre_usuario" FromRole="usuarios" ToRole="prestamos" />
+  </EntityType>
+  <Association Name="FK_lib_area">
+    <End Role="areas" Type="Self.areas" Multiplicity="1" />
+    <End Role="libros" Type="Self.libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="areas">
+        <PropertyRef Name="are_codigo" />
+      </Principal>
+      <Dependent Role="libros">
+        <PropertyRef Name="lib_area" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dtp_libro">
+    <End Role="libros" Type="Self.libros" Multiplicity="1" />
+    <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libros">
+        <PropertyRef Name="lib_codigo" />
+      </Principal>
+      <Dependent Role="detalle_prestamos">
+        <PropertyRef Name="dtp_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dtp_prestamo">
+    <End Role="prestamos" Type="Self.prestamos" Multiplicity="1" />
+    <End Role="detalle_prestamos" Type="Self.detalle_prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prestamos">
+        <PropertyRef Name="pre_codigo" />
+      </Principal>
+      <Dependent Role="detalle_prestamos">
+        <PropertyRef Name="dtp_prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pre_usuario">
+    <End Role="usuarios" Type="Self.usuarios" Multiplicity="1" />
+    <End Role="prestamos" Type="Self.prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuarios">
+        <PropertyRef Name="usu_documento" />
+      </Principal>
+      <Dependent Role="prestamos">
+        <PropertyRef Name="pre_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_san_prestamo">
+    <End Role="prestamos" Type="Self.prestamos" Multiplicity="1" />
+    <End Role="sanciones" Type="Self.sanciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prestamos">
+        <PropertyRef Name="pre_codigo" />
+      </Principal>
+      <Dependent Role="sanciones">
+        <PropertyRef Name="san_prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibraryContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="areas" EntityType="Self.areas" />
+    <EntitySet Name="detalle_prestamos" EntityType="Self.detalle_prestamos" />
+    <EntitySet Name="libros" EntityType="Self.libros" />
+    <EntitySet Name="prestamos" EntityType="Self.prestamos" />
+    <EntitySet Name="sanciones" EntityType="Self.sanciones" />
+    <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+    <AssociationSet Name="FK_lib_area" Association="Self.FK_lib_area">
+      <End Role="areas" EntitySet="areas" />
+      <End Role="libros" EntitySet="libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dtp_libro" Association="Self.FK_dtp_libro">
+      <End Role="libros" EntitySet="libros" />
+      <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dtp_prestamo" Association="Self.FK_dtp_prestamo">
+      <End Role="prestamos" EntitySet="prestamos" />
+      <End Role="detalle_prestamos" EntitySet="detalle_prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pre_usuario" Association="Self.FK_pre_usuario">
+      <End Role="usuarios" EntitySet="usuarios" />
+      <End Role="prestamos" EntitySet="prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_san_prestamo" Association="Self.FK_san_prestamo">
+      <End Role="prestamos" EntitySet="prestamos" />
+      <End Role="sanciones" EntitySet="sanciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

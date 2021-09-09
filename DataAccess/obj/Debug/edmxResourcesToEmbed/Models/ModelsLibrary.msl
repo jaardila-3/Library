@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="LibraryContext">
+    <EntitySetMapping Name="areas">
+      <EntityTypeMapping TypeName="LibraryModel.areas">
+        <MappingFragment StoreEntitySet="areas">
+          <ScalarProperty Name="are_codigo" ColumnName="are_codigo" />
+          <ScalarProperty Name="are_nombre" ColumnName="are_nombre" />
+          <ScalarProperty Name="are_tiempo" ColumnName="are_tiempo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalle_prestamos">
+      <EntityTypeMapping TypeName="LibraryModel.detalle_prestamos">
+        <MappingFragment StoreEntitySet="detalle_prestamos">
+          <ScalarProperty Name="dtp_prestamo" ColumnName="dtp_prestamo" />
+          <ScalarProperty Name="dtp_libro" ColumnName="dtp_libro" />
+          <ScalarProperty Name="dtp_cantidad" ColumnName="dtp_cantidad" />
+          <ScalarProperty Name="dtp_fecha_fin" ColumnName="dtp_fecha_fin" />
+          <ScalarProperty Name="dtp_fecha_dev" ColumnName="dtp_fecha_dev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="libros">
+      <EntityTypeMapping TypeName="LibraryModel.libros">
+        <MappingFragment StoreEntitySet="libros">
+          <ScalarProperty Name="lib_codigo" ColumnName="lib_codigo" />
+          <ScalarProperty Name="lib_nombre" ColumnName="lib_nombre" />
+          <ScalarProperty Name="lib_num_pag" ColumnName="lib_num_pag" />
+          <ScalarProperty Name="lib_autor" ColumnName="lib_autor" />
+          <ScalarProperty Name="lib_editorial" ColumnName="lib_editorial" />
+          <ScalarProperty Name="lib_area" ColumnName="lib_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prestamos">
+      <EntityTypeMapping TypeName="LibraryModel.prestamos">
+        <MappingFragment StoreEntitySet="prestamos">
+          <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
+          <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+          <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sanciones">
+      <EntityTypeMapping TypeName="LibraryModel.sanciones">
+        <MappingFragment StoreEntitySet="sanciones">
+          <ScalarProperty Name="san_codigo" ColumnName="san_codigo" />
+          <ScalarProperty Name="san_prestamo" ColumnName="san_prestamo" />
+          <ScalarProperty Name="san_dias_sancion" ColumnName="san_dias_sancion" />
+          <ScalarProperty Name="san_fecha_inicio" ColumnName="san_fecha_inicio" />
+          <ScalarProperty Name="san_fecha_fin" ColumnName="san_fecha_fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="LibraryModel.usuarios">
+        <MappingFragment StoreEntitySet="usuarios">
+          <ScalarProperty Name="usu_documento" ColumnName="usu_documento" />
+          <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
+          <ScalarProperty Name="usu_direccion" ColumnName="usu_direccion" />
+          <ScalarProperty Name="usu_telefono" ColumnName="usu_telefono" />
+          <ScalarProperty Name="usu_correo" ColumnName="usu_correo" />
+          <ScalarProperty Name="usu_estado" ColumnName="usu_estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
