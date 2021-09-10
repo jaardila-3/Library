@@ -12,7 +12,7 @@ namespace WebApplication
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            //instanciamos el metodo construido en app_start.unityconfig para inyectar las dependencias
             UnityConfig.RegisterDependencies();
         }
     }

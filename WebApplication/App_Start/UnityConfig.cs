@@ -1,4 +1,5 @@
 using BusinessLogic.Repository;
+using BusinessLogic.UnitOfWork;
 using DataAccess.Models;
 using System;
 using System.Web.Mvc;
@@ -51,7 +52,11 @@ namespace WebApplication
         public static void RegisterDependencies()
         {
             UnityContainer container = new UnityContainer();
+            //generic de repository
             container.RegisterType(typeof(IRepository<>), typeof(Repository<>));
+            //inyeccion de unit of work
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
