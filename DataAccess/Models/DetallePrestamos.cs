@@ -10,7 +10,8 @@
 namespace DataAccess.Models
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class DetallePrestamos
     {
         public System.Guid dtp_prestamo { get; set; }

@@ -1,9 +1,10 @@
 ﻿using BusinessLogic.UnitOfWork;
+using DataAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using WebApplication.DesignPattern.Strategy;
 using WebApplication.Models.ViewModels;
 
 namespace WebApplication.Controllers
@@ -32,37 +33,44 @@ namespace WebApplication.Controllers
 
 
 
-
-
-
-
-        // GET: Usuarios/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            //EJEMPLO DE SELECTLIST DESDE C#
+            //var SelectUsuarios = _unitOfWork.ousuarios.GetList();
+            //ViewBag.SelectList = new SelectList(SelectUsuarios, "usu_documento", "usu_nombre");
+
             return View();
         }
 
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormUsuariosViewModel usuarioVM)
         {
+            if (!ModelState.IsValid)
+            {
+                //EJEMPLO DE SELECTLIST DESDE C#
+                //var SelectUsuarios = _unitOfWork.ousuarios.GetList();
+                //ViewBag.SelectList = new SelectList(SelectUsuarios, "usu_documento", "usu_nombre");
+                return View("Create", usuarioVM);
+            }   
+
             try
             {
-                // TODO: Add insert logic here
+                var context = new UsuarioContext(new UsuarioStrategy());
+                context.Add(usuarioVM, _unitOfWork);
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
         }
+
+
+
+
 
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)

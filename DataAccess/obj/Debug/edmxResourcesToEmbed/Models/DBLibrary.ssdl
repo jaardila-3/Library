@@ -88,8 +88,8 @@
     <Property Name="usu_nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="usu_direccion" Type="text" Nullable="false" />
     <Property Name="usu_telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="usu_correo" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="usu_estado" Type="bit" Nullable="false" />
+    <Property Name="usu_correo" Type="nvarchar" MaxLength="100" />
+    <Property Name="usu_estado" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
     <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">

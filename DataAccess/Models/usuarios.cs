@@ -25,7 +25,7 @@ namespace DataAccess.Models
         public string usu_direccion { get; set; }
         public string usu_telefono { get; set; }
         public string usu_correo { get; set; }
-        public bool usu_estado { get; set; }
+        public string usu_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prestamos> Prestamos { get; set; }

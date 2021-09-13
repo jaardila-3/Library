@@ -59,15 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Prestamos">
-      <EntityTypeMapping TypeName="LibraryModel.Prestamos">
-        <MappingFragment StoreEntitySet="Prestamos">
-          <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
-          <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
-          <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sanciones">
       <EntityTypeMapping TypeName="LibraryModel.Sanciones">
         <MappingFragment StoreEntitySet="Sanciones">
@@ -79,18 +70,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
-      <EntityTypeMapping TypeName="LibraryModel.Usuarios">
-        <MappingFragment StoreEntitySet="Usuarios">
-          <ScalarProperty Name="usu_documento" ColumnName="usu_documento" />
-          <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
-          <ScalarProperty Name="usu_direccion" ColumnName="usu_direccion" />
-          <ScalarProperty Name="usu_telefono" ColumnName="usu_telefono" />
-          <ScalarProperty Name="usu_correo" ColumnName="usu_correo" />
-          <ScalarProperty Name="usu_estado" ColumnName="usu_estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="LibraryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -99,5 +78,26 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Prestamos">
+      <EntityTypeMapping TypeName="LibraryModel.Prestamos">
+        <MappingFragment StoreEntitySet="Prestamos">
+          <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
+          <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+          <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="LibraryModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="usu_estado" ColumnName="usu_estado" />
+          <ScalarProperty Name="usu_correo" ColumnName="usu_correo" />
+          <ScalarProperty Name="usu_telefono" ColumnName="usu_telefono" />
+          <ScalarProperty Name="usu_direccion" ColumnName="usu_direccion" />
+          <ScalarProperty Name="usu_nombre" ColumnName="usu_nombre" />
+          <ScalarProperty Name="usu_documento" ColumnName="usu_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
