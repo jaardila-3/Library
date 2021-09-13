@@ -18,13 +18,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Bliblioteca Gonzalo Arango", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Áreas", "About", "Home")</li>
+                    <li>@Html.ActionLink("Libros", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Préstamos", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Sanciones", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Usuarios", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p class="text-center">Biblioteca Gonzalo Arango Arias &copy; @DateTime.Now.Year - Dev-Ard</p>
         </footer>
     </div>
 

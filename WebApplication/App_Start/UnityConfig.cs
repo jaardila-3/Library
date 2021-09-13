@@ -5,6 +5,8 @@ using System;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
+using Unity.Injection;
+using WebApplication.Controllers;
 
 namespace WebApplication
 {
@@ -56,6 +58,9 @@ namespace WebApplication
             container.RegisterType(typeof(IRepository<>), typeof(Repository<>));
             //inyeccion de unit of work
             container.RegisterType<IUnitOfWork, UnitOfWork>();
+            // Esas directivas obligan a la unidad a usar el constructor sin parámetros (el objeto InjectionConstructor está vacío) al crear el AccountController. 
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
