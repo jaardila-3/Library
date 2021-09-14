@@ -1,5 +1,4 @@
 ﻿using DataAccess.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -20,13 +19,13 @@ namespace BusinessLogic.Repository
         public void Add(TEntity data) => _dbSet.Add(data);
         
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             var dataToDelete = _dbSet.Find(id);
             _dbSet.Remove(dataToDelete);
         }
 
-        public TEntity GetForGuid(Guid id) => _dbSet.Find(id);
+        public TEntity GetForInt(int id) => _dbSet.Find(id);
 
         public TEntity GetForString(string id) => _dbSet.Find(id);
 
@@ -39,7 +38,7 @@ namespace BusinessLogic.Repository
 
         public void Update(TEntity data)
         {
-            _dbSet.Attach(data);//attach hace el cambio del elemento, lo sobreescribe
+            _dbSet.Attach(data);//attach hace el cambio del elemento, lo sobrescribe
             _context.Entry(data).State = EntityState.Modified;
         }
     }

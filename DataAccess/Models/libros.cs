@@ -20,15 +20,15 @@ namespace DataAccess.Models
             this.DetallePrestamos = new HashSet<DetallePrestamos>();
         }
     
-        public System.Guid lib_codigo { get; set; }
+        public int lib_codigo { get; set; }
         public string lib_nombre { get; set; }
         public int lib_num_pag { get; set; }
         public string lib_autor { get; set; }
         public string lib_editorial { get; set; }
-        public System.Guid lib_area { get; set; }
+        public int lib_area { get; set; }
     
-        public virtual Areas Areas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePrestamos> DetallePrestamos { get; set; }
+        public virtual Areas Areas { get; set; }
     }
 }

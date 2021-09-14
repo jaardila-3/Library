@@ -4,10 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>Biblioteca Gonzalo Arango Arias</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/monsteradmin/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Images/favicon.ico">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,11 +25,11 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Áreas", "About", "Home")</li>
-                    <li>@Html.ActionLink("Libros", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Préstamos", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Sanciones", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Usuarios", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Áreas", "Index", "Areas")</li>
+                    <li>@Html.ActionLink("Libros", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Préstamos", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Sanciones", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Usuarios", "Index", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

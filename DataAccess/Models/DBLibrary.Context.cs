@@ -25,13 +25,13 @@ namespace DataAccess.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Areas> Areas { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<DetallePrestamos> DetallePrestamos { get; set; }
         public virtual DbSet<Libros> Libros { get; set; }
-        public virtual DbSet<Sanciones> Sanciones { get; set; }
         public virtual DbSet<Prestamos> Prestamos { get; set; }
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Sanciones> Sanciones { get; set; }
+        public virtual DbSet<Areas> Areas { get; set; }
     }
 }

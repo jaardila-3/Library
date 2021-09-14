@@ -20,9 +20,9 @@ namespace DataAccess.Models
             this.Libros = new HashSet<Libros>();
         }
     
-        public System.Guid are_codigo { get; set; }
+        public int are_codigo { get; set; }
         public string are_nombre { get; set; }
-        public System.DateTime are_tiempo { get; set; }
+        public int are_tiempo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Libros> Libros { get; set; }

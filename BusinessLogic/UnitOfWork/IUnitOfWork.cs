@@ -7,6 +7,7 @@ namespace BusinessLogic.UnitOfWork
     {
         IRepository<Usuarios> ousuarios { get; }
         IRepository<Libros> olibros { get; }
+        IRepository<Areas> oareas { get; }
 
         void Save();
     }

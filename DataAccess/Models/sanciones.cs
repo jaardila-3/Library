@@ -15,7 +15,7 @@ namespace DataAccess.Models
     public partial class Sanciones
     {
         public System.Guid san_codigo { get; set; }
-        public System.Guid san_prestamo { get; set; }
+        public int san_prestamo { get; set; }
         public int san_dias_sancion { get; set; }
         public System.DateTime san_fecha_inicio { get; set; }
         public System.DateTime san_fecha_fin { get; set; }

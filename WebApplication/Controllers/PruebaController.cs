@@ -15,7 +15,7 @@ namespace WebApplication.Controllers
            return View(lista);
         }
 
-        //Controlador con inyeccion de dependencias
+        //Controlador con inyección de dependencias
         private readonly IRepository<Usuarios> _repository;
         public PruebaController(IRepository<Usuarios> repository)
         {

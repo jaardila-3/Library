@@ -9,12 +9,13 @@ namespace BusinessLogic.UnitOfWork
         //variables para guardar el objetos si existe
         private IRepository<Usuarios> _usuario;
         private IRepository<Libros> _libro;
+        private IRepository<Areas> _areas;
         public UnitOfWork(DBContext context)
         {
             _context = context;
         }
 
-        //implementacion de la interfaz
+        //implementación de la interfaz
         public IRepository<Usuarios> ousuarios
         {
             get
@@ -32,6 +33,16 @@ namespace BusinessLogic.UnitOfWork
                 return _libro == null ?
                     _libro = new Repository<Libros>(_context) :
                     _libro;
+            }
+        }
+
+        public IRepository<Areas> oareas
+        {
+            get
+            {
+                return _areas == null ?
+                    _areas = new Repository<Areas>(_context) :
+                    _areas;
             }
         }
 
