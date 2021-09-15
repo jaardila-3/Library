@@ -155,3 +155,5 @@ C:\Users\jorge\Source\Repos\Library\WebApplication\bin\Unity.Abstractions.pdb
 C:\Users\jorge\Source\Repos\Library\WebApplication\bin\Unity.Container.pdb
 C:\Users\jorge\Source\Repos\Library\WebApplication\bin\Unity.Mvc.pdb
 C:\Users\jorge\Source\Repos\Library\WebApplication\bin\Unity.Mvc.xml
+C:\Users\jorge\source\repos\Library\WebApplication\bin\AutoMapper.dll
+C:\Users\jorge\source\repos\Library\WebApplication\bin\AutoMapper.xml

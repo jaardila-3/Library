@@ -4,3 +4,11 @@ C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.
 C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.csproj.CoreCompileInputs.cache
 C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.dll
 C:\Users\jorge\Source\Repos\Library\CommonComponents\obj\Debug\CommonComponents.pdb
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\AutoMapper.dll
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\DataAccess.dll
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\EntityFramework.dll
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\DataAccess.pdb
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\DataAccess.dll.config
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\AutoMapper.xml
+C:\Users\jorge\source\repos\Library\CommonComponents\bin\Debug\EntityFramework.xml
+C:\Users\jorge\source\repos\Library\CommonComponents\obj\Debug\CommonComponents.csproj.CopyComplete

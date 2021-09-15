@@ -15,3 +15,5 @@ C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.SqlS
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\DataAccess.dll.config
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.xml
 C:\Users\jorge\Source\Repos\Library\BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jorge\source\repos\Library\BusinessLogic\bin\Debug\AutoMapper.dll
+C:\Users\jorge\source\repos\Library\BusinessLogic\bin\Debug\AutoMapper.xml

@@ -1,8 +1,8 @@
-﻿using BusinessLogic.UnitOfWork;
+﻿using AutoMapper;
+using BusinessLogic.UnitOfWork;
 using CommonComponents.DTOs;
 using DataAccess.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -12,23 +12,29 @@ namespace WebApplication.Controllers
     {
         //Controlador con inyección de dependencias y patrón unit of work
         private readonly IUnitOfWork _unitOfWork;
+        //Automapper
+        private IMapper _mapper;
+        //CONSTRUCTOR
         public AreasController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-        }
-
+            _mapper = MvcApplication.MapperConfiguration.CreateMapper(); //MvcApplication: clase del global.asax
+        }        
 
         // GET: Usuarios
         public ActionResult Index()
         {
-            IEnumerable<AreasDTO> areas = from d in _unitOfWork.oareas.GetList()
-                                          select new AreasDTO
-                                          {
-                                              are_codigo = d.are_codigo,
-                                              are_nombre = d.are_nombre,
-                                              are_tiempo = d.are_tiempo
-                                          };
-            return View(areas);
+            var listAreas = _unitOfWork.oareas.GetList();
+            var listAreasDTO = listAreas.Select(x => _mapper.Map<AreasDTO>(x)).ToList();
+
+            //IEnumerable<AreasDTO> listAreasDTO = from d in _unitOfWork.oareas.GetList()
+            //                              select new AreasDTO
+            //                              {
+            //                                  are_codigo = d.are_codigo,
+            //                                  are_nombre = d.are_nombre,
+            //                                  are_tiempo = d.are_tiempo
+            //                              };
+            return View(listAreasDTO);
         }
 
 
@@ -41,21 +47,23 @@ namespace WebApplication.Controllers
 
         //POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(AreasDTO model)
+        public ActionResult Create(AreasDTO modelDTO)
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", model);
+                return View("Create", modelDTO);
             }
 
             try
             {
-                var areasDB = new Areas();
-                areasDB.are_codigo = model.are_codigo;
-                areasDB.are_nombre = model.are_nombre;
-                areasDB.are_tiempo = model.are_tiempo;
+                var entidad = _mapper.Map<Areas>(modelDTO);
 
-                _unitOfWork.oareas.Add(areasDB);
+                //var entidad = new Areas();
+                //entidad.are_codigo = modelDTO.are_codigo;
+                //entidad.are_nombre = modelDTO.are_nombre;
+                //entidad.are_tiempo = modelDTO.are_tiempo;
+
+                _unitOfWork.oareas.Add(entidad);
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
