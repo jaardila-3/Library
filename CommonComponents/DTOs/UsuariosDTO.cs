@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication.Models.ViewModels
+namespace CommonComponents.DTOs
 {
-    public class FormUsuariosViewModel
+    class UsuariosDTO
     {
         [Required]
-        [Display(Name ="No. Documento")]
+        [Display(Name = "No. Documento")]
         public string Documento { get; set; }
         [Required]
         [Display(Name = "Nombre y Apellido")]
@@ -18,8 +18,8 @@ namespace WebApplication.Models.ViewModels
         public string Telefono { get; set; }
         [EmailAddress]
         [Display(Name = "Correo Electrónico")]
-
         public string Correo { get; set; }
+        [Display(Name = "Estado del usuario")]
         public string Estado { get; set; } //Activo - Sancionado
     }
 }

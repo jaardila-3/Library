@@ -3,61 +3,73 @@
 @{
     ViewBag.Title = "Index";
 }
+@section style
+{
+    @Styles.Render("~/bundles/datatablecss")
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/datatablejs")
+}
 
-<h2>Index</h2>
+<h2>Libros</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.lib_codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lib_nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lib_num_pag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lib_autor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lib_editorial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Areas.are_nombre)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.lib_codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lib_nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lib_num_pag)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lib_autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lib_editorial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Areas.are_nombre)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.lib_codigo }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.lib_codigo })
-            </td>
-        </tr>
-    }
-
-</table>
+<div class="table-responsive">
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.lib_codigo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lib_nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lib_num_pag)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lib_autor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lib_editorial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Areas.are_nombre)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lib_codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lib_nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lib_num_pag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lib_autor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lib_editorial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Areas.are_nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.lib_codigo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.lib_codigo })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

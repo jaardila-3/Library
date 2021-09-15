@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
             _mapper = MvcApplication.MapperConfiguration.CreateMapper(); //MvcApplication: clase del global.asax
         }        
 
-        // GET: Usuarios
+        // GET: 
         public ActionResult Index()
         {
             var listAreas = _unitOfWork.oareas.GetList();
@@ -39,13 +39,13 @@ namespace WebApplication.Controllers
 
 
 
-        // GET: Usuarios/Create
+        // GET: /Create
         public ActionResult Create()
         {
             return View();
         }
 
-        //POST: Usuarios/Create
+        //POST: /Create
         [HttpPost]
         public ActionResult Create(AreasDTO modelDTO)
         {
@@ -79,7 +79,10 @@ namespace WebApplication.Controllers
         // GET: Areas/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //creamos el modelo para mostrarlo en la vista
+            var entidad = _unitOfWork.oareas.GetForInt(id);
+            var modelDTO = _mapper.Map<AreasDTO>(entidad);
+            return View(modelDTO);
         }
 
         // POST: Areas/Edit/5

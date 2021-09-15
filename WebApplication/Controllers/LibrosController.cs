@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
             _mapper = MvcApplication.MapperConfiguration.CreateMapper(); //MvcApplication: clase del global.asax
         }
 
-        // GET: Usuarios
+        // GET: 
         public ActionResult Index()
         {
             var listEntidad = _unitOfWork.olibros.GetList();
@@ -32,16 +32,16 @@ namespace WebApplication.Controllers
 
 
 
-        // GET: Usuarios/Create
+        // GET: /Create
         public ActionResult Create()
-        {
+        {            
             //EJEMPLO DE SELECTLIST DESDE C#
             var SelectList = _unitOfWork.oareas.GetList();
             ViewBag.SelectList = new SelectList(SelectList, "are_codigo", "are_nombre");
             return View();
         }
 
-        //POST: Usuarios/Create
+        //POST: /Create
         [HttpPost]
         public ActionResult Create(LibrosDTO modelDTO)
         {
@@ -70,10 +70,13 @@ namespace WebApplication.Controllers
         // GET: /Edit/5
         public ActionResult Edit(int id)
         {
+            //creamos el modelo para mostrarlo en la vista
+            var entidad = _unitOfWork.olibros.GetForInt(id);
+            var modelDTO = _mapper.Map<LibrosDTO>(entidad);
             //EJEMPLO DE SELECTLIST DESDE C#
             var SelectList = _unitOfWork.oareas.GetList();
             ViewBag.SelectList = new SelectList(SelectList, "are_codigo", "are_nombre");
-            return View();
+            return View(modelDTO);
         }
 
         // POST: /Edit/5
@@ -125,5 +128,6 @@ namespace WebApplication.Controllers
                 return View(modelDTO);
             }
         }
+
     }
 }

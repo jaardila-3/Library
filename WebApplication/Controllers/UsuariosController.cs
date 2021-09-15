@@ -44,17 +44,14 @@ namespace WebApplication.Controllers
         public ActionResult Create(FormUsuariosViewModel usuarioVM)
         {
             if (!ModelState.IsValid)
-            {
-                //EJEMPLO DE SELECTLIST DESDE C#
-                //var SelectUsuarios = _unitOfWork.ousuarios.GetList();
-                //ViewBag.SelectList = new SelectList(SelectUsuarios, "usu_documento", "usu_nombre");
+            {                
                 return View("Create", usuarioVM);
             }   
 
             try
             {
-                var context = new UsuarioContext(new UsuarioStrategy());
-                context.Add(usuarioVM, _unitOfWork);
+                //var context = new UsuarioContext(new UsuarioStrategy());
+                //context.Add(usuarioVM, _unitOfWork);
 
                 return RedirectToAction("Index");
             }
