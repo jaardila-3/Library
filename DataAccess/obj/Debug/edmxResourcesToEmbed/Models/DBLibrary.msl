@@ -47,6 +47,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="LibraryModel.Areas">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="are_tiempo" ColumnName="are_tiempo" />
+          <ScalarProperty Name="are_nombre" ColumnName="are_nombre" />
+          <ScalarProperty Name="are_codigo" ColumnName="are_codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DetallePrestamos">
       <EntityTypeMapping TypeName="LibraryModel.DetallePrestamos">
         <MappingFragment StoreEntitySet="DetallePrestamos">
@@ -87,15 +96,6 @@
           <ScalarProperty Name="san_dias_sancion" ColumnName="san_dias_sancion" />
           <ScalarProperty Name="san_prestamo" ColumnName="san_prestamo" />
           <ScalarProperty Name="san_codigo" ColumnName="san_codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Areas">
-      <EntityTypeMapping TypeName="LibraryModel.Areas">
-        <MappingFragment StoreEntitySet="Areas">
-          <ScalarProperty Name="are_tiempo" ColumnName="are_tiempo" />
-          <ScalarProperty Name="are_nombre" ColumnName="are_nombre" />
-          <ScalarProperty Name="are_codigo" ColumnName="are_codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

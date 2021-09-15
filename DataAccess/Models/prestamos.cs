@@ -21,7 +21,7 @@ namespace DataAccess.Models
             this.Sanciones = new HashSet<Sanciones>();
         }
     
-        public int pre_codigo { get; set; }
+        public System.Guid pre_codigo { get; set; }
         public System.DateTime pre_fecha { get; set; }
         public string pre_usuario { get; set; }
     

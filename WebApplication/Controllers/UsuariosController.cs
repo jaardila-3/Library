@@ -36,10 +36,6 @@ namespace WebApplication.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            //EJEMPLO DE SELECTLIST DESDE C#
-            //var SelectUsuarios = _unitOfWork.ousuarios.GetList();
-            //ViewBag.SelectList = new SelectList(SelectUsuarios, "usu_documento", "usu_nombre");
-
             return View();
         }
 

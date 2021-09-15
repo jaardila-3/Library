@@ -45,7 +45,7 @@
       <PropertyRef Name="dtp_prestamo" />
       <PropertyRef Name="dtp_libro" />
     </Key>
-    <Property Name="dtp_prestamo" Type="int" Nullable="false" />
+    <Property Name="dtp_prestamo" Type="uniqueidentifier" Nullable="false" />
     <Property Name="dtp_libro" Type="int" Nullable="false" />
     <Property Name="dtp_cantidad" Type="int" Nullable="false" />
     <Property Name="dtp_fecha_fin" Type="datetime" Nullable="false" />
@@ -57,7 +57,7 @@
     </Key>
     <Property Name="lib_codigo" Type="int" Nullable="false" />
     <Property Name="lib_nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="lib_num_pag" Type="int" Nullable="false" />
+    <Property Name="lib_num_pag" Type="int" />
     <Property Name="lib_autor" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="lib_editorial" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="lib_area" Type="int" Nullable="false" />
@@ -66,7 +66,7 @@
     <Key>
       <PropertyRef Name="pre_codigo" />
     </Key>
-    <Property Name="pre_codigo" Type="int" Nullable="false" />
+    <Property Name="pre_codigo" Type="uniqueidentifier" Nullable="false" />
     <Property Name="pre_fecha" Type="datetime" Nullable="false" />
     <Property Name="pre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -75,7 +75,7 @@
       <PropertyRef Name="san_codigo" />
     </Key>
     <Property Name="san_codigo" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="san_prestamo" Type="int" Nullable="false" />
+    <Property Name="san_prestamo" Type="uniqueidentifier" Nullable="false" />
     <Property Name="san_dias_sancion" Type="int" Nullable="false" />
     <Property Name="san_fecha_inicio" Type="datetime" Nullable="false" />
     <Property Name="san_fecha_fin" Type="datetime" Nullable="false" />

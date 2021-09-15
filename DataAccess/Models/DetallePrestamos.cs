@@ -14,7 +14,7 @@ namespace DataAccess.Models
     
     public partial class DetallePrestamos
     {
-        public int dtp_prestamo { get; set; }
+        public System.Guid dtp_prestamo { get; set; }
         public int dtp_libro { get; set; }
         public int dtp_cantidad { get; set; }
         public System.DateTime dtp_fecha_fin { get; set; }

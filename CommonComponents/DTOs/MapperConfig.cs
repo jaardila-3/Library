@@ -12,6 +12,9 @@ namespace CommonComponents.DTOs
                 cfg.CreateMap<Areas, AreasDTO>();
                 cfg.CreateMap<AreasDTO, Areas>();
 
+                cfg.CreateMap<Libros, LibrosDTO>();
+                cfg.CreateMap<LibrosDTO, Libros>();
+
             });
         }
     }

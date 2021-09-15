@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2a847cb5a1094b058c5476d0bb390dac" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryModel.AspNetRoles" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.AspNetUsers" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.AspNetRoles" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.AspNetUsers" Width="1.5" PointX="4.625" PointY="3.125" IsExpanded="true" />
         <AssociationConnector Association="LibraryModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LibraryModel.Usuarios" Width="1.5" PointX="4.5" PointY="1.625" />
-        <EntityTypeShape EntityType="LibraryModel.DetallePrestamos" Width="1.5" PointX="2.125" PointY="7" />
-        <EntityTypeShape EntityType="LibraryModel.Libros" Width="1.5" PointX="1" PointY="3.875" />
-        <EntityTypeShape EntityType="LibraryModel.Prestamos" Width="1.5" PointX="4.125" PointY="4.625" />
-        <EntityTypeShape EntityType="LibraryModel.Sanciones" Width="1.5" PointX="4.75" PointY="7.5" />
+        <EntityTypeShape EntityType="LibraryModel.Usuarios" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="LibraryModel.Areas" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="LibraryModel.DetallePrestamos" Width="1.5" PointX="0.5" PointY="6.5" />
+        <EntityTypeShape EntityType="LibraryModel.Libros" Width="1.5" PointX="0.5" PointY="3" />
+        <EntityTypeShape EntityType="LibraryModel.Prestamos" Width="1.5" PointX="2.625" PointY="3.5" />
+        <EntityTypeShape EntityType="LibraryModel.Sanciones" Width="1.5" PointX="2.75" PointY="6.625" />
+        <AssociationConnector Association="LibraryModel.FK_lib_area" />
         <AssociationConnector Association="LibraryModel.FK_dtp_libro" />
         <AssociationConnector Association="LibraryModel.FK_dtp_prestamo" />
         <AssociationConnector Association="LibraryModel.FK_pre_usuario" />
         <AssociationConnector Association="LibraryModel.FK_san_prestamo" />
-        <EntityTypeShape EntityType="LibraryModel.Areas" Width="1.5" PointX="1" PointY="1.25" />
-        <AssociationConnector Association="LibraryModel.FK_lib_area" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

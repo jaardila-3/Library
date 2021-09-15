@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\AreasDTO.cs" />
+    <Compile Include="DTOs\LibrosDTO.cs" />
     <Compile Include="DTOs\MapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
