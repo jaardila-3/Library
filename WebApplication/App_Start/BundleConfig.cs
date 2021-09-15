@@ -52,6 +52,13 @@ namespace WebApplication
                        "~/dist/js/waves.js",
                        "~/dist/js/sidebarmenu.js",
                        "~/dist/js/custom.min.js"));
+            //datatable
+            bundles.Add(new StyleBundle("~/bundles/datatablecss").Include(
+                        "~/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"));            
+            bundles.Add(new ScriptBundle("~/bundles/datatablejs").Include(
+                        "~/assets/libs/datatables/media/js/jquery.dataTables.min.js",
+                        "~/dist/js/pages/datatable/custom-datatable.js",
+                        "~/dist/js/pages/datatable/datatable-basic.init.js"));
         }
     }
 }

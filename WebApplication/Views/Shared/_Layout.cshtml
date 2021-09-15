@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Gonzalo Arango Arias</title>
@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/Images/favicon.ico">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("style", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

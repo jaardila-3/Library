@@ -68,9 +68,10 @@ namespace WebApplication.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.InnerException.InnerException.Message);
+                return View(modelDTO);
             }
         }
 
@@ -83,38 +84,32 @@ namespace WebApplication.Controllers
 
         // POST: Areas/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, AreasDTO model)
+        public ActionResult Edit(int id, AreasDTO modelDTO)
         {
             try
             {
-                var areasDB = new Areas();
-                areasDB.are_codigo = id;
-                areasDB.are_nombre = model.are_nombre;
-                areasDB.are_tiempo = model.are_tiempo;
+                modelDTO.are_codigo = id;
+                var entidad = _mapper.Map<Areas>(modelDTO);                
 
-                _unitOfWork.oareas.Update(areasDB);
+                _unitOfWork.oareas.Update(entidad);
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.Message);                
+                return View(modelDTO);
             }
         }
 
         // GET: Areas/Delete/5
         public ActionResult Delete(int id)
         {
-            var model = _unitOfWork.oareas.GetForInt(id);
-            var area = new AreasDTO
-            {
-                are_codigo = model.are_codigo,
-                are_nombre = model.are_nombre,
-                are_tiempo = model.are_tiempo
-            };
-
-            return View(area);
+            var entidad = _unitOfWork.oareas.GetForInt(id);
+            var modelDTO = _mapper.Map<AreasDTO>(entidad);
+            
+            return View(modelDTO);
         }
 
         // POST: Areas/Delete/5
@@ -128,9 +123,12 @@ namespace WebApplication.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.Message);
+                var entidad = _unitOfWork.oareas.GetForInt(id);
+                var modelDTO = _mapper.Map<AreasDTO>(entidad);
+                return View(modelDTO);
             }
         }
     }
