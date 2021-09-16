@@ -1,37 +1,35 @@
-﻿using BusinessLogic.UnitOfWork;
+﻿using AutoMapper;
+using BusinessLogic.UnitOfWork;
+using CommonComponents.DTOs;
 using DataAccess.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using WebApplication.DesignPattern.Strategy;
-using WebApplication.Models.ViewModels;
 
 namespace WebApplication.Controllers
 {
     public class UsuariosController : Controller
     {
-        //Controlador con inyeccion de dependencias y patron unit of work
+        //Controlador con inyección de dependencias y patrón unit of work
         private readonly IUnitOfWork _unitOfWork;
+        //Automapper
+        private IMapper _mapper;
+        //CONSTRUCTOR
         public UsuariosController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _mapper = MvcApplication.MapperConfiguration.CreateMapper(); //MvcApplication: clase del global.asax
         }
 
 
         // GET: Usuarios
         public ActionResult Index()
         {
-            IEnumerable<UsuariosViewModel> usuario = from d in _unitOfWork.ousuarios.GetList()
-                                                     select new UsuariosViewModel
-                                                     {
-                                                         Documento = d.usu_documento,
-                                                         Nombre = d.usu_nombre
-                                                     };
-            return View(usuario);
+            var listEntidad = _unitOfWork.ousuarios.GetList();
+            var listDTO = listEntidad.Select(x => _mapper.Map<UsuariosDTO>(x)).ToList();
+
+            return View(listDTO);
         }
-
-
 
         // GET: Usuarios/Create
         public ActionResult Create()
@@ -41,71 +39,95 @@ namespace WebApplication.Controllers
 
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormUsuariosViewModel usuarioVM)
+        public ActionResult Create(UsuariosDTO modelDTO)
         {
             if (!ModelState.IsValid)
             {                
-                return View("Create", usuarioVM);
+                return View("Create", modelDTO);
             }   
 
             try
             {
                 //var context = new UsuarioContext(new UsuarioStrategy());
-                //context.Add(usuarioVM, _unitOfWork);
+                //context.Add(modelDTO, _unitOfWork);
+                modelDTO.usu_estado = "Activo";
+                var entidad = _mapper.Map<Usuarios>(modelDTO);
+
+                _unitOfWork.ousuarios.Add(entidad);
+                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.InnerException.InnerException.Message);
+                return View(modelDTO);
             }
         }
 
-
-
-
-
-        // GET: Usuarios/Edit/5
-        public ActionResult Edit(int id)
+        // GET: /Edit/5
+        public ActionResult Edit(string id)
         {
-            return View();
+            //creamos el modelo para mostrarlo en la vista
+            var entidad = _unitOfWork.ousuarios.Get(id);
+            var modelDTO = _mapper.Map<UsuariosDTO>(entidad);
+            
+            return View(modelDTO);
         }
 
-        // POST: Usuarios/Edit/5
+        // POST: /Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, UsuariosDTO modelDTO)
         {
             try
             {
-                // TODO: Add update logic here
+                modelDTO.usu_documento = id;
+                modelDTO.usu_estado = "Activo";
+                if (!ModelState.IsValid)
+                {
+                    return View("Create", modelDTO);
+                }
+
+                var entidad = _mapper.Map<Usuarios>(modelDTO);
+
+                _unitOfWork.ousuarios.Update(entidad);
+                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View(modelDTO);
             }
         }
 
-        // GET: Usuarios/Delete/5
-        public ActionResult Delete(int id)
+        // GET: /Delete/5
+        public ActionResult Delete(string id)
         {
-            return View();
+            var entidad = _unitOfWork.ousuarios.Get(id);
+            var modelDTO = _mapper.Map<UsuariosDTO>(entidad);
+
+            return View(modelDTO);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: /Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                _unitOfWork.ousuarios.Delete(id);
+                _unitOfWork.Save();
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, ex.Message);
+                var entidad = _unitOfWork.ousuarios.Get(id);
+                var modelDTO = _mapper.Map<UsuariosDTO>(entidad);
+                return View(modelDTO);
             }
         }
     }

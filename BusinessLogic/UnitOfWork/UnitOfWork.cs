@@ -10,6 +10,9 @@ namespace BusinessLogic.UnitOfWork
         private IRepository<Usuarios> _usuario;
         private IRepository<Libros> _libro;
         private IRepository<Areas> _areas;
+        private IRepository<Prestamos> _prestamos;
+        private IRepository<DetallePrestamos> _detallePrestamos;
+        private IRepository<Sanciones> _sanciones;
         public UnitOfWork(DBContext context)
         {
             _context = context;
@@ -43,6 +46,36 @@ namespace BusinessLogic.UnitOfWork
                 return _areas == null ?
                     _areas = new Repository<Areas>(_context) :
                     _areas;
+            }
+        }
+
+        public IRepository<Prestamos> oprestamos
+        {
+            get
+            {
+                return _prestamos == null ?
+                    _prestamos = new Repository<Prestamos>(_context) :
+                    _prestamos;
+            }
+        }
+
+        public IRepository<DetallePrestamos> odetallePrestamos
+        {
+            get
+            {
+                return _detallePrestamos == null ?
+                    _detallePrestamos = new Repository<DetallePrestamos>(_context) :
+                    _detallePrestamos;
+            }
+        }
+
+        public IRepository<Sanciones> osanciones
+        {
+            get
+            {
+                return _sanciones == null ?
+                    _sanciones = new Repository<Sanciones>(_context) :
+                    _sanciones;
             }
         }
 

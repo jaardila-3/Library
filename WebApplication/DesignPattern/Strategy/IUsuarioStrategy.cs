@@ -1,11 +1,11 @@
 ﻿using BusinessLogic.UnitOfWork;
-using WebApplication.Models.ViewModels;
+using CommonComponents.DTOs;
 
 namespace WebApplication.DesignPattern.Strategy
 {
     public interface IUsuarioStrategy
     {
-        void Add(FormUsuariosViewModel usuarioVM, IUnitOfWork unitOfWork);
+        void Add(UsuariosDTO usuariosDTO, IUnitOfWork unitOfWork);
 
     }
 }

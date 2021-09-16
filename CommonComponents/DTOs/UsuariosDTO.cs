@@ -2,24 +2,24 @@
 
 namespace CommonComponents.DTOs
 {
-    class UsuariosDTO
+    public class UsuariosDTO
     {
         [Required]
         [Display(Name = "No. Documento")]
-        public string Documento { get; set; }
+        public string usu_documento { get; set; }
         [Required]
         [Display(Name = "Nombre y Apellido")]
-        public string Nombre { get; set; }
+        public string usu_nombre { get; set; }
         [Required]
         [Display(Name = "Dirección Residencia")]
-        public string Direccion { get; set; }
+        public string usu_direccion { get; set; }
         [Required]
         [Display(Name = "No. Celular o Teléfono")]
-        public string Telefono { get; set; }
+        public string usu_telefono { get; set; }
         [EmailAddress]
         [Display(Name = "Correo Electrónico")]
-        public string Correo { get; set; }
+        public string usu_correo { get; set; }
         [Display(Name = "Estado del usuario")]
-        public string Estado { get; set; } //Activo - Sancionado
+        public string usu_estado { get; set; } //Activo - Sancionado
     }
 }

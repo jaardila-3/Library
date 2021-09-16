@@ -25,9 +25,15 @@ namespace BusinessLogic.Repository
             _dbSet.Remove(dataToDelete);
         }
 
-        public TEntity GetForInt(int id) => _dbSet.Find(id);
+        public void Delete(string id)
+        {
+            var dataToDelete = _dbSet.Find(id);
+            _dbSet.Remove(dataToDelete);
+        }
 
-        public TEntity GetForString(string id) => _dbSet.Find(id);
+        public TEntity Get(int id) => _dbSet.Find(id);
+
+        public TEntity Get(string id) => _dbSet.Find(id);
 
 
         public IEnumerable<TEntity> GetList() => _dbSet.ToList();

@@ -80,7 +80,7 @@ namespace WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             //creamos el modelo para mostrarlo en la vista
-            var entidad = _unitOfWork.oareas.GetForInt(id);
+            var entidad = _unitOfWork.oareas.Get(id);
             var modelDTO = _mapper.Map<AreasDTO>(entidad);
             return View(modelDTO);
         }
@@ -92,6 +92,11 @@ namespace WebApplication.Controllers
             try
             {
                 modelDTO.are_codigo = id;
+                if (!ModelState.IsValid)
+                {
+                    return View("Create", modelDTO);
+                }
+
                 var entidad = _mapper.Map<Areas>(modelDTO);                
 
                 _unitOfWork.oareas.Update(entidad);
@@ -109,7 +114,7 @@ namespace WebApplication.Controllers
         // GET: Areas/Delete/5
         public ActionResult Delete(int id)
         {
-            var entidad = _unitOfWork.oareas.GetForInt(id);
+            var entidad = _unitOfWork.oareas.Get(id);
             var modelDTO = _mapper.Map<AreasDTO>(entidad);
             
             return View(modelDTO);
@@ -129,7 +134,7 @@ namespace WebApplication.Controllers
             catch(Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                var entidad = _unitOfWork.oareas.GetForInt(id);
+                var entidad = _unitOfWork.oareas.Get(id);
                 var modelDTO = _mapper.Map<AreasDTO>(entidad);
                 return View(modelDTO);
             }

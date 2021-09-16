@@ -15,6 +15,18 @@ namespace CommonComponents.DTOs
                 cfg.CreateMap<Libros, LibrosDTO>();
                 cfg.CreateMap<LibrosDTO, Libros>();
 
+                cfg.CreateMap<Usuarios, UsuariosDTO>();
+                cfg.CreateMap<UsuariosDTO, Usuarios>();
+
+                cfg.CreateMap<Prestamos, PrestamosDTO>();
+                cfg.CreateMap<PrestamosDTO, Prestamos>();
+
+                cfg.CreateMap<DetallePrestamos, DetallePrestamosDTO>();
+                cfg.CreateMap<DetallePrestamosDTO, DetallePrestamos>();
+
+                cfg.CreateMap<Sanciones, SancionesDTO>();
+                cfg.CreateMap<SancionesDTO, Sanciones>();
+
             });
         }
     }

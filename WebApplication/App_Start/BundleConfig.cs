@@ -59,6 +59,12 @@ namespace WebApplication
                         "~/assets/libs/datatables/media/js/jquery.dataTables.min.js",
                         "~/dist/js/pages/datatable/custom-datatable.js",
                         "~/dist/js/pages/datatable/datatable-basic.init.js"));
+            //datepicker
+            bundles.Add(new StyleBundle("~/bundles/datepickercss").Include(
+                        "~/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"));
+            bundles.Add(new ScriptBundle("~/bundles/datepickerjs").Include(
+                        "~/assets/libs/moment/moment.js",
+                        "~/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"));
         }
     }
 }

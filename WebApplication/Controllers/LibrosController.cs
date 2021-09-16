@@ -34,10 +34,8 @@ namespace WebApplication.Controllers
 
         // GET: /Create
         public ActionResult Create()
-        {            
-            //EJEMPLO DE SELECTLIST DESDE C#
-            var SelectList = _unitOfWork.oareas.GetList();
-            ViewBag.SelectList = new SelectList(SelectList, "are_codigo", "are_nombre");
+        {
+            GetListAreas();
             return View();
         }
 
@@ -47,6 +45,7 @@ namespace WebApplication.Controllers
         {
             if (!ModelState.IsValid)
             {
+                GetListAreas();
                 return View("Create", modelDTO);
             }
 
@@ -62,6 +61,7 @@ namespace WebApplication.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.InnerException.InnerException.Message);
+                GetListAreas();
                 return View(modelDTO);
             }
         }
@@ -71,11 +71,9 @@ namespace WebApplication.Controllers
         public ActionResult Edit(int id)
         {
             //creamos el modelo para mostrarlo en la vista
-            var entidad = _unitOfWork.olibros.GetForInt(id);
+            var entidad = _unitOfWork.olibros.Get(id);
             var modelDTO = _mapper.Map<LibrosDTO>(entidad);
-            //EJEMPLO DE SELECTLIST DESDE C#
-            var SelectList = _unitOfWork.oareas.GetList();
-            ViewBag.SelectList = new SelectList(SelectList, "are_codigo", "are_nombre");
+            GetListAreas();
             return View(modelDTO);
         }
 
@@ -86,6 +84,12 @@ namespace WebApplication.Controllers
             try
             {
                 modelDTO.lib_codigo = id;
+                if (!ModelState.IsValid)
+                {
+                    GetListAreas();
+                    return View("Create", modelDTO);
+                }
+
                 var entidad = _mapper.Map<Libros>(modelDTO);
 
                 _unitOfWork.olibros.Update(entidad);
@@ -96,6 +100,7 @@ namespace WebApplication.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
+                GetListAreas();
                 return View(modelDTO);
             }
         }
@@ -103,7 +108,7 @@ namespace WebApplication.Controllers
         // GET: /Delete/5
         public ActionResult Delete(int id)
         {
-            var entidad = _unitOfWork.olibros.GetForInt(id);
+            var entidad = _unitOfWork.olibros.Get(id);
             var modelDTO = _mapper.Map<LibrosDTO>(entidad);
 
             return View(modelDTO);
@@ -123,11 +128,20 @@ namespace WebApplication.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                var entidad = _unitOfWork.olibros.GetForInt(id);
+                var entidad = _unitOfWork.olibros.Get(id);
                 var modelDTO = _mapper.Map<LibrosDTO>(entidad);
                 return View(modelDTO);
             }
         }
+
+        #region HELPERS
+        private void GetListAreas()
+        {
+            //EJEMPLO DE SELECTLIST DESDE C#
+            var SelectList = _unitOfWork.oareas.GetList();
+            ViewBag.SelectList = new SelectList(SelectList, "are_codigo", "are_nombre");
+        }        
+        #endregion
 
     }
 }

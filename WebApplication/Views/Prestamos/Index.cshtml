@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CommonComponents.DTOs.PrestamosDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section style
+{
+    @Styles.Render("~/bundles/datatablecss")
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/datatablejs")
+}
+
+<h2>Prestamos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive">
+    <table id="zero_config" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.pre_fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuarios.usu_nombre)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pre_fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuarios.usu_nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.pre_codigo }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.pre_codigo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.pre_codigo })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
