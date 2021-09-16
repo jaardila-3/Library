@@ -8,14 +8,18 @@ namespace CommonComponents.DTOs
         public System.Guid pre_codigo { get; set; }
         [Required]
         [Display(Name = "Fecha préstamo")]
-        //[DataType(DataType.DateTime)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public System.DateTime pre_fecha { get; set; }
         [Required]
         [Display(Name = "Usuario que presta")]
-        public string pre_usuario { get; set; }
+        public string pre_usuario { get; set; }       
+
 
         public virtual ICollection<DetallePrestamosDTO> DetallePrestamos { get; set; }
         public virtual UsuariosDTO Usuarios { get; set; }
+
+
+        //creamos atributo para fecha en formato corto
+        [Display(Name = "Fecha préstamo")]
+        public string fecha_corta { get => $"{pre_fecha.ToShortDateString() }"; }
     }
 }

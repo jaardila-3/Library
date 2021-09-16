@@ -6346,6 +6346,8 @@
     <Content Include="Views\Usuarios\Delete.cshtml" />
     <Content Include="Views\Prestamos\Index.cshtml" />
     <Content Include="Views\Prestamos\Create.cshtml" />
+    <Content Include="Views\Shared\_AddLibros.cshtml" />
+    <Content Include="Views\Shared\_ListLibros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

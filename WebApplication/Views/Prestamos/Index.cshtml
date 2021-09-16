@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/datatablejs")
 }
 
-<h2>Prestamos</h2>
+<h2>Préstamos</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.pre_fecha)
+                    @Html.DisplayNameFor(model => model.fecha_corta)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Usuarios.usu_nombre)
@@ -35,7 +35,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.pre_fecha)
+                        @Html.DisplayFor(modelItem => item.fecha_corta)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Usuarios.usu_nombre)

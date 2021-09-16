@@ -50,6 +50,7 @@ namespace WebApplication.Controllers
 
             try
             {
+                modelDTO.pre_codigo = Guid.NewGuid();
                 var entidad = _mapper.Map<Prestamos>(modelDTO);
 
                 _unitOfWork.oprestamos.Add(entidad);
@@ -65,6 +66,20 @@ namespace WebApplication.Controllers
             }
         }
 
+        #region MÉTODOS DE VISTAS PARCIALES
+        public ActionResult _AddLibros()
+        {
+            GetListLibros();
+            return PartialView();
+        }
+        public ActionResult _ListLibros()
+        {
+            var listEntidad = _unitOfWork.odetallePrestamos.GetList();
+            var listDTO = listEntidad.Select(x => _mapper.Map<DetallePrestamosDTO>(x)).ToList();
+
+            return PartialView(listDTO);
+        }
+        #endregion
 
         #region HELPERS
         private void GetListUsuarios()

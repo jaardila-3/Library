@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CommonComponents.DTOs.DetallePrestamosDTO>
+
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Libros.lib_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtp_cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prestamos.pre_fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtp_fecha_fin)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libros.lib_nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtp_cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prestamos.pre_fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dtp_fecha_fin)
+            </td>
+        </tr>
+    }
+
+</table>

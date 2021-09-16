@@ -26,11 +26,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Prestamos</h4>
+        <h4>Préstamos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.pre_fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pre_fecha, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.pre_fecha, new { htmlAttributes = new { @class = "datepicker form-control" } })
                 @Html.ValidationMessageFor(model => model.pre_fecha, "", new { @class = "text-danger" })
@@ -38,7 +38,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.pre_usuario, "pre_usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.pre_usuario, "Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(x => x.pre_usuario, (IEnumerable<SelectListItem>)ViewBag.listUsuarios)
                 @Html.ValidationMessageFor(model => model.pre_usuario, "", new { @class = "text-danger" })
@@ -47,12 +47,23 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear préstamo" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
+<br />
+
+<!--vista parcial sin contenido lógico o sin modelo-->
+@*@Html.Partial("_AddLibros")*@
+@{
+    //como esta vista trae contenido logico de un controlador utilizamos RenderAction que tambien envia parametros
+    // a diferencia de Render parcial que no permite
+    Html.RenderAction("_AddLibros", "Prestamos");
+    Html.RenderAction("_ListLibros", "Prestamos", new { guid = "guid"});
+}
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
