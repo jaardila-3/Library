@@ -35,12 +35,9 @@ namespace BusinessLogic.Repository
 
         public TEntity Get(string id) => _dbSet.Find(id);
 
-
         public IEnumerable<TEntity> GetList() => _dbSet.ToList();
 
-
-        public void Save() => _context.SaveChanges();
-        
+        public void Save() => _context.SaveChanges();        
 
         public void Update(TEntity data)
         {
