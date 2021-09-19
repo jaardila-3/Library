@@ -52,21 +52,17 @@
         </div>
     </div>
 }
-
 <br />
+
 <!--vista parcial sin contenido lógico o sin modelo-->
 @*@Html.Partial("_AddLibros")*@
 @using CommonComponents.DTOs
 @if ((PrestamosDTO)Session["PrestamosDTO"] != null)
 {
-    <p class="lead text-success bg-info">@ViewBag.succes</p>
-
-    {
-        //como esta vista trae contenido lógico de un controlador utilizamos RenderAction que también envía parámetros
-        // a diferencia de Render parcial que no permite
-        Html.RenderAction("_AddLibros", "Prestamos");
-        Html.RenderAction("_ListLibros", "Prestamos", new { guid = "guid" });
-    }
+    //como esta vista trae contenido lógico de un controlador utilizamos RenderAction que también envía parámetros
+    // a diferencia de Render parcial que no permite
+    Html.RenderAction("_AddLibros", "Prestamos");
+    Html.RenderAction("_ListLibros", "Prestamos", new { guid = "guid" });
 }
 
 

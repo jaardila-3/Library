@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            Session.Clear();//limpiara la variables de session que se crearan mas adelante
+            Session.Clear();//limpia la variables de session que se crearan mas adelante
             var listEntidad = _unitOfWork.oprestamos.GetList();
             var listDTO = listEntidad.Select(x => _mapper.Map<PrestamosDTO>(x)).ToList();
 
@@ -106,6 +106,23 @@ namespace WebApplication.Controllers
                 return View("Create", modelPrestamosDTO);
             }
         }
+
+        //GET
+        public ActionResult Details(Guid id)
+        {
+            var entidad = _unitOfWork.oprestamos.Get(id);
+            var modelDTO = _mapper.Map<PrestamosDTO>(entidad);
+            return View(modelDTO);
+        }
+
+        //GET
+        public ActionResult ReturnBook()
+        {            
+            GetListUsuarios();
+            GetListLibros();
+            return View();
+        }
+
 
         #region MÉTODOS DE VISTAS PARCIALES
         //GET

@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -34,6 +35,8 @@ namespace BusinessLogic.Repository
         public TEntity Get(int id) => _dbSet.Find(id);
 
         public TEntity Get(string id) => _dbSet.Find(id);
+
+        public TEntity Get(Guid id) => _dbSet.Find(id);
 
         public IEnumerable<TEntity> GetList() => _dbSet.ToList();
 

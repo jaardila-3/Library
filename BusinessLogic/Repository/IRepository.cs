@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic.Repository
 {
@@ -7,6 +8,7 @@ namespace BusinessLogic.Repository
         IEnumerable<TEntity> GetList();
         TEntity Get(int id);
         TEntity Get(string id);//para documento del usuario
+        TEntity Get(Guid id);//para la tabla prestamos
         void Add(TEntity data);
         void Delete(int id);
         void Delete(string id); // para documento del usuario

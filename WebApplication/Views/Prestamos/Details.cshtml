@@ -1,0 +1,66 @@
+﻿@model CommonComponents.DTOs.PrestamosDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+@section style
+{
+    @Styles.Render("~/bundles/datatablecss")
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/datatablejs")
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prestamos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pre_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pre_fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.usu_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.usu_nombre)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Libros prestados: </h4>
+    <div class="table-responsive">
+        <table id="zero_config" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Libro</th>
+                    <th>Fecha de entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DetallePrestamos)
+                {
+                    <tr>
+                        <td>@item.dtp_cantidad</td>
+                        <td>@item.Libros.lib_nombre</td>
+                        <td>@item.dtp_fecha_fin</td>
+                    </tr>                   
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pre_codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
