@@ -48,8 +48,6 @@ namespace WebApplication.Controllers
 
             try
             {
-                //var context = new UsuarioContext(new UsuarioStrategy());
-                //context.Add(modelDTO, _unitOfWork);
                 modelDTO.usu_estado = "Activo";
                 var entidad = _mapper.Map<Usuarios>(modelDTO);
 

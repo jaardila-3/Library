@@ -74,6 +74,7 @@
           <Property Name="pre_codigo" Type="uniqueidentifier" Nullable="false" />
           <Property Name="pre_fecha" Type="datetime" Nullable="false" />
           <Property Name="pre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pre_vigente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Sanciones">
           <Key>
@@ -268,7 +269,6 @@
           <EntitySet Name="Areas" EntityType="LibraryModel.Areas" />
           <EntitySet Name="DetallePrestamos" EntityType="LibraryModel.DetallePrestamos" />
           <EntitySet Name="Libros" EntityType="LibraryModel.Libros" />
-          <EntitySet Name="Prestamos" EntityType="LibraryModel.Prestamos" />
           <EntitySet Name="Sanciones" EntityType="LibraryModel.Sanciones" />
           <AssociationSet Name="FK_lib_area" Association="LibraryModel.FK_lib_area">
             <End Role="Areas" EntitySet="Areas" />
@@ -278,6 +278,7 @@
             <End Role="Libros" EntitySet="Libros" />
             <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
           </AssociationSet>
+          <EntitySet Name="Prestamos" EntityType="LibraryModel.Prestamos" />
           <AssociationSet Name="FK_dtp_prestamo" Association="LibraryModel.FK_dtp_prestamo">
             <End Role="Prestamos" EntitySet="Prestamos" />
             <End Role="DetallePrestamos" EntitySet="DetallePrestamos" />
@@ -338,17 +339,6 @@
           <NavigationProperty Name="Areas" Relationship="LibraryModel.FK_lib_area" FromRole="Libros" ToRole="Areas" />
           <NavigationProperty Name="DetallePrestamos" Relationship="LibraryModel.FK_dtp_libro" FromRole="Libros" ToRole="DetallePrestamos" />
         </EntityType>
-        <EntityType Name="Prestamos">
-          <Key>
-            <PropertyRef Name="pre_codigo" />
-          </Key>
-          <Property Name="pre_codigo" Type="Guid" Nullable="false" />
-          <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="pre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DetallePrestamos" Relationship="LibraryModel.FK_dtp_prestamo" FromRole="Prestamos" ToRole="DetallePrestamos" />
-          <NavigationProperty Name="Usuarios" Relationship="LibraryModel.FK_pre_usuario" FromRole="Prestamos" ToRole="Usuarios" />
-          <NavigationProperty Name="Sanciones" Relationship="LibraryModel.FK_san_prestamo" FromRole="Prestamos" ToRole="Sanciones" />
-        </EntityType>
         <EntityType Name="Sanciones">
           <Key>
             <PropertyRef Name="san_codigo" />
@@ -384,6 +374,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Prestamos">
+          <Key>
+            <PropertyRef Name="pre_codigo" />
+          </Key>
+          <Property Name="pre_codigo" Type="Guid" Nullable="false" />
+          <Property Name="pre_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pre_vigente" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DetallePrestamos" Relationship="LibraryModel.FK_dtp_prestamo" FromRole="Prestamos" ToRole="DetallePrestamos" />
+          <NavigationProperty Name="Usuarios" Relationship="LibraryModel.FK_pre_usuario" FromRole="Prestamos" ToRole="Usuarios" />
+          <NavigationProperty Name="Sanciones" Relationship="LibraryModel.FK_san_prestamo" FromRole="Prestamos" ToRole="Sanciones" />
+        </EntityType>
         <Association Name="FK_dtp_prestamo">
           <End Type="LibraryModel.Prestamos" Role="Prestamos" Multiplicity="1" />
           <End Type="LibraryModel.DetallePrestamos" Role="DetallePrestamos" Multiplicity="*" />
@@ -504,15 +506,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Prestamos">
-            <EntityTypeMapping TypeName="LibraryModel.Prestamos">
-              <MappingFragment StoreEntitySet="Prestamos">
-                <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
-                <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
-                <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sanciones">
             <EntityTypeMapping TypeName="LibraryModel.Sanciones">
               <MappingFragment StoreEntitySet="Sanciones">
@@ -521,6 +514,16 @@
                 <ScalarProperty Name="san_dias_sancion" ColumnName="san_dias_sancion" />
                 <ScalarProperty Name="san_prestamo" ColumnName="san_prestamo" />
                 <ScalarProperty Name="san_codigo" ColumnName="san_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prestamos">
+            <EntityTypeMapping TypeName="LibraryModel.Prestamos">
+              <MappingFragment StoreEntitySet="Prestamos">
+                <ScalarProperty Name="pre_vigente" ColumnName="pre_vigente" />
+                <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
+                <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+                <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -217,10 +217,10 @@
     <Compile Include="Controllers\PruebaController.cs" />
     <Compile Include="Controllers\SancionesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
-    <Compile Include="DesignPattern\Strategy\IUsuarioStrategy.cs" />
-    <Compile Include="DesignPattern\Strategy\UsuarioContext.cs" />
-    <Compile Include="DesignPattern\Strategy\UsuarioSancionadoStrategy.cs" />
-    <Compile Include="DesignPattern\Strategy\UsuarioStrategy.cs" />
+    <Compile Include="DesignPattern\Strategy\Prestamos\IPrestamoStrategy.cs" />
+    <Compile Include="DesignPattern\Strategy\Prestamos\PrestamoContext.cs" />
+    <Compile Include="DesignPattern\Strategy\Prestamos\PrestamoVigenteStrategy.cs" />
+    <Compile Include="DesignPattern\Strategy\Prestamos\PrestamoNoVigenteStrategy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

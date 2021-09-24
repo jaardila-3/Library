@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using WebApplication.DesignPattern.Strategy.Prestamos;
 
 namespace WebApplication.Controllers
 {
@@ -26,7 +27,7 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             Session.Clear();//limpia la variables de session que se crearan mas adelante
-            var listEntidad = _unitOfWork.oprestamos.GetList();
+            var listEntidad = _unitOfWork.oprestamos.GetList().Where(x => x.pre_vigente == true);
             var listDTO = listEntidad.Select(x => _mapper.Map<PrestamosDTO>(x)).ToList();
 
             return View(listDTO);
@@ -52,7 +53,7 @@ namespace WebApplication.Controllers
         public ActionResult Create(PrestamosDTO modelDTO)
         {
             if (!ModelState.IsValid)
-            {                
+            {
                 GetListUsuarios();
                 return View("Create", modelDTO);
             }
@@ -60,6 +61,8 @@ namespace WebApplication.Controllers
             try
             {
                 modelDTO.pre_codigo = Guid.NewGuid();//creamos el guid para la tabla prestamos
+                //pre_vigente viene por default false, lo dejamos así porque no se han asignado libros
+
                 Session["PrestamosDTO"] = modelDTO; //diccionario de datos para utilizar en otros métodos
                 var entidad = _mapper.Map<Prestamos>(modelDTO);
 
@@ -85,19 +88,26 @@ namespace WebApplication.Controllers
                 GetListLibros();
                 return View("_AddLibros");
             }
-
-            var modelPrestamosDTO = (PrestamosDTO)Session["PrestamosDTO"]; //utilizamos la variable de session creada anteriormente
+            
+            //utilizamos la variable de session creada anteriormente
+            var modelPrestamosDTO = (PrestamosDTO)Session["PrestamosDTO"];
 
             try
-            {
-                modelDTO.dtp_prestamo = modelPrestamosDTO.pre_codigo;//recuperamos el Guid de la tabla prestamos
+            {                
+                /*
+                 Existen dos estrategias, una cuando se ha creado el préstamo y no se han asignado libros (pre_vigente=false)
+                 y otra cuando se le asignan los libros (pre_vigente=true)
+                */
+                //en este punto consulta la entidad para saber mas que todo el estado del vigente
+                var prestamo = _unitOfWork.oprestamos.Get(modelPrestamosDTO.pre_codigo);
+                modelDTO.dtp_prestamo = prestamo.pre_codigo;
 
-                var entidad = _mapper.Map<DetallePrestamos>(modelDTO);
+                var context = prestamo.pre_vigente == false ?
+                                new PrestamoContext(new PrestamoNoVigenteStrategy()) :
+                                new PrestamoContext(new PrestamoVigenteStrategy());
 
-                _unitOfWork.odetallePrestamos.Add(entidad);
-                _unitOfWork.Save();
+                context.Add(modelDTO, _unitOfWork);
 
-                //TempData["modelPrestamosDTO"] = modelPrestamosDTO; //variable temporal de un método a otro
                 return RedirectToAction("Create");//con el view no entra el GetListLibros();
             }
             catch (Exception ex)
@@ -118,12 +128,15 @@ namespace WebApplication.Controllers
 
         //GET
         public ActionResult ReturnBook()
-        {            
-            GetListUsuarios();
-            return View();
+        {
+            //enviamos un modelo a la vista
+            DetallePrestamosDTO modelDTO = new DetallePrestamosDTO();
+            modelDTO.dtp_fecha_dev = DateTime.Now;
+            GetListUsuariosToReturn();
+            return View(modelDTO);
         }
 
-        // POST:
+        // POST: Acción similar a EDIT
         [HttpPost]
         public ActionResult ReturnBook(DetallePrestamosDTO modelDTO)
         {
@@ -131,7 +144,7 @@ namespace WebApplication.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    GetListUsuarios();
+                    GetListUsuariosToReturn();
                     return View(modelDTO);
                 }
 
@@ -146,9 +159,9 @@ namespace WebApplication.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
-                GetListUsuarios();
+                GetListUsuariosToReturn();
                 return View(modelDTO);
-            }            
+            }
         }
 
 
@@ -174,7 +187,7 @@ namespace WebApplication.Controllers
         //GET AJAX        
         public ActionResult ValidationPartialView(string pre_usuario)
         {
-            TempData["lista"] = GetListLibros(pre_usuario);
+            TempData["lista"] = GetListLibrosToReturn(pre_usuario);
             return PartialView("_ListReturnBooks");
         }
         #endregion
@@ -192,16 +205,40 @@ namespace WebApplication.Controllers
             var listLibros = _unitOfWork.olibros.GetList();
             ViewBag.listLibros = new SelectList(listLibros, "lib_codigo", "lib_nombre");
         }
-        private object GetListLibros(string pre_usuario)
+        private void GetListUsuariosToReturn()
         {
-            //EJEMPLO DE SELECTLIST DESDE C#
-            var listLibros = _unitOfWork.odetallePrestamos.GetList().Where(x => x.Prestamos.pre_usuario == pre_usuario);
-            List<LibrosDTO> lista = new List<LibrosDTO>();
-            foreach (var item in listLibros)
+            //obtenemos listado de prestamos
+            var listPrestamos = _unitOfWork.oprestamos.GetList();
+            //creamos la lista de usuarios que en detalle-prestamos no hallan devuelto el libro 
+            List<UsuariosDTO> listUsuarios = new List<UsuariosDTO>();
+            foreach (var item in listPrestamos)
             {
-                lista.Add(new LibrosDTO() { lib_codigo = item.Libros.lib_codigo, lib_nombre = item.Libros.lib_nombre });
+                foreach (var dtp in item.DetallePrestamos)
+                {
+                    //si dpt es null no tendrá dtp_fecha_dev, por tanto tampoco entrará
+                    if (dtp.dtp_fecha_dev == null)
+                    {
+                        listUsuarios.Add(new UsuariosDTO() { usu_documento = item.pre_usuario, usu_nombre = item.Usuarios.usu_nombre });
+                    }
+                }
             }
-            return new SelectList(lista, "lib_codigo", "lib_nombre");
+            //quitamos los usuarios repetidos, el Distinc() no funciona porque compara solo valores y este un objeto entidad con varios campos
+            //utilizamos entonces GroupBy() para agrupar c/elemento por su cantidad y escogemos el elemento 
+            listUsuarios = listUsuarios.GroupBy(x => x.usu_documento).Select(x => x.FirstOrDefault()).ToList();
+            ViewBag.listUsuarios = new SelectList(listUsuarios, "usu_documento", "usu_nombre");
+        }
+        private object GetListLibrosToReturn(string pre_usuario)
+        {
+            //obtenemos lista detalle-prestamos de un usuario
+            var listDPT = _unitOfWork.odetallePrestamos.GetList().Where(x => x.Prestamos.pre_usuario == pre_usuario);
+            //creamos la lista de libros que tiene ese usuario
+            List<LibrosDTO> listLibros = new List<LibrosDTO>();
+            foreach (var item in listDPT)
+            {
+                listLibros.Add(new LibrosDTO() { lib_codigo = item.dtp_libro, lib_nombre = item.Libros.lib_nombre });
+            }
+            //retornamos el objeto para poder asignarlo al TempData[]
+            return new SelectList(listLibros, "lib_codigo", "lib_nombre");
         }
         #endregion
     }

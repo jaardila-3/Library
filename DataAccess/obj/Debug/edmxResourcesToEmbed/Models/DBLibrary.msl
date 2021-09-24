@@ -79,15 +79,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Prestamos">
-      <EntityTypeMapping TypeName="LibraryModel.Prestamos">
-        <MappingFragment StoreEntitySet="Prestamos">
-          <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
-          <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
-          <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sanciones">
       <EntityTypeMapping TypeName="LibraryModel.Sanciones">
         <MappingFragment StoreEntitySet="Sanciones">
@@ -96,6 +87,16 @@
           <ScalarProperty Name="san_dias_sancion" ColumnName="san_dias_sancion" />
           <ScalarProperty Name="san_prestamo" ColumnName="san_prestamo" />
           <ScalarProperty Name="san_codigo" ColumnName="san_codigo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamos">
+      <EntityTypeMapping TypeName="LibraryModel.Prestamos">
+        <MappingFragment StoreEntitySet="Prestamos">
+          <ScalarProperty Name="pre_vigente" ColumnName="pre_vigente" />
+          <ScalarProperty Name="pre_usuario" ColumnName="pre_usuario" />
+          <ScalarProperty Name="pre_fecha" ColumnName="pre_fecha" />
+          <ScalarProperty Name="pre_codigo" ColumnName="pre_codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

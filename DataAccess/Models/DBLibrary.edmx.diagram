@@ -12,10 +12,10 @@
         <EntityTypeShape EntityType="LibraryModel.Areas" Width="1.5" PointX="0.5" PointY="0.5" />
         <EntityTypeShape EntityType="LibraryModel.DetallePrestamos" Width="1.5" PointX="0.5" PointY="6.5" />
         <EntityTypeShape EntityType="LibraryModel.Libros" Width="1.5" PointX="0.5" PointY="3" />
-        <EntityTypeShape EntityType="LibraryModel.Prestamos" Width="1.5" PointX="2.625" PointY="3.5" />
         <EntityTypeShape EntityType="LibraryModel.Sanciones" Width="1.5" PointX="2.75" PointY="6.625" />
         <AssociationConnector Association="LibraryModel.FK_lib_area" />
         <AssociationConnector Association="LibraryModel.FK_dtp_libro" />
+        <EntityTypeShape EntityType="LibraryModel.Prestamos" Width="1.5" PointX="2.5" PointY="3.375" />
         <AssociationConnector Association="LibraryModel.FK_dtp_prestamo" />
         <AssociationConnector Association="LibraryModel.FK_pre_usuario" />
         <AssociationConnector Association="LibraryModel.FK_san_prestamo" />

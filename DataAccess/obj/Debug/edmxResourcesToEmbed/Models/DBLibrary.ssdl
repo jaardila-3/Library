@@ -69,6 +69,7 @@
     <Property Name="pre_codigo" Type="uniqueidentifier" Nullable="false" />
     <Property Name="pre_fecha" Type="datetime" Nullable="false" />
     <Property Name="pre_usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pre_vigente" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Sanciones">
     <Key>

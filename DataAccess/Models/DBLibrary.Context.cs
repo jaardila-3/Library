@@ -31,7 +31,7 @@ namespace DataAccess.Models
         public virtual DbSet<Areas> Areas { get; set; }
         public virtual DbSet<DetallePrestamos> DetallePrestamos { get; set; }
         public virtual DbSet<Libros> Libros { get; set; }
-        public virtual DbSet<Prestamos> Prestamos { get; set; }
         public virtual DbSet<Sanciones> Sanciones { get; set; }
+        public virtual DbSet<Prestamos> Prestamos { get; set; }
     }
 }
