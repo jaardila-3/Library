@@ -19,7 +19,7 @@
     </script>
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 @using (Html.BeginForm())
 {
@@ -59,10 +59,10 @@
 @using CommonComponents.DTOs
 @if ((PrestamosDTO)Session["PrestamosDTO"] != null)
 {
-    //como esta vista trae contenido lógico de un controlador utilizamos RenderAction que también envía parámetros
+    //como esta vista trae contenido lógico de un controlador utilizamos RenderAction que también envía parámetros , new { guid = "guid" }
     // a diferencia de Render parcial que no permite
     Html.RenderAction("_AddLibros", "Prestamos");
-    Html.RenderAction("_ListLibros", "Prestamos", new { guid = "guid" });
+    Html.RenderAction("_ListLibros", "Prestamos");
 }
 
 

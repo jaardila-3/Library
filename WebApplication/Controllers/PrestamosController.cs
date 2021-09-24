@@ -3,6 +3,7 @@ using BusinessLogic.UnitOfWork;
 using CommonComponents.DTOs;
 using DataAccess.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -119,8 +120,35 @@ namespace WebApplication.Controllers
         public ActionResult ReturnBook()
         {            
             GetListUsuarios();
-            GetListLibros();
             return View();
+        }
+
+        // POST:
+        [HttpPost]
+        public ActionResult ReturnBook(DetallePrestamosDTO modelDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    GetListUsuarios();
+                    return View(modelDTO);
+                }
+
+                var entidad = _unitOfWork.odetallePrestamos.GetList().Where(x => x.Prestamos.pre_usuario == modelDTO.Prestamos.pre_usuario && x.dtp_libro == modelDTO.dtp_libro).FirstOrDefault();
+                entidad.dtp_fecha_dev = modelDTO.dtp_fecha_dev;
+
+                _unitOfWork.odetallePrestamos.Update(entidad);
+                _unitOfWork.Save();
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                GetListUsuarios();
+                return View(modelDTO);
+            }            
         }
 
 
@@ -143,6 +171,12 @@ namespace WebApplication.Controllers
 
             return PartialView(listDTO);
         }
+        //GET AJAX        
+        public ActionResult ValidationPartialView(string pre_usuario)
+        {
+            TempData["lista"] = GetListLibros(pre_usuario);
+            return PartialView("_ListReturnBooks");
+        }
         #endregion
 
         #region HELPERS
@@ -157,6 +191,17 @@ namespace WebApplication.Controllers
             //EJEMPLO DE SELECTLIST DESDE C#
             var listLibros = _unitOfWork.olibros.GetList();
             ViewBag.listLibros = new SelectList(listLibros, "lib_codigo", "lib_nombre");
+        }
+        private object GetListLibros(string pre_usuario)
+        {
+            //EJEMPLO DE SELECTLIST DESDE C#
+            var listLibros = _unitOfWork.odetallePrestamos.GetList().Where(x => x.Prestamos.pre_usuario == pre_usuario);
+            List<LibrosDTO> lista = new List<LibrosDTO>();
+            foreach (var item in listLibros)
+            {
+                lista.Add(new LibrosDTO() { lib_codigo = item.Libros.lib_codigo, lib_nombre = item.Libros.lib_nombre });
+            }
+            return new SelectList(lista, "lib_codigo", "lib_nombre");
         }
         #endregion
     }

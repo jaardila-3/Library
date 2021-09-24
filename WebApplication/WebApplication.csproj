@@ -210,7 +210,6 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
-    <Compile Include="Controllers\borrarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibrosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -6350,8 +6349,8 @@
     <Content Include="Views\Shared\_AddLibros.cshtml" />
     <Content Include="Views\Shared\_ListLibros.cshtml" />
     <Content Include="Views\Prestamos\Details.cshtml" />
-    <Content Include="Views\borrar\Details.cshtml" />
     <Content Include="Views\Prestamos\ReturnBook.cshtml" />
+    <Content Include="Views\Prestamos\_ListReturnBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
