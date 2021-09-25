@@ -30,7 +30,9 @@
     </script>
 }
 
-<h2>REALIZAR DEVOLUCIÓN</h2>
+<h2>Realizar devolución</h2>
+
+<hr />
 
 @using (Html.BeginForm())
 {
@@ -58,6 +60,7 @@
         <div id="divPartial">
             @if (TempData["lista"] != null)
             {
+                //vista parcial creada en el controlador Prestamos
                 Html.Partial("_ListReturnBooks");
             }
         </div>
@@ -66,5 +69,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>

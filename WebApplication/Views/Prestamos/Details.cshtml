@@ -12,10 +12,9 @@
     @Scripts.Render("~/bundles/datatablejs")
 }
 
-<h2>Details</h2>
+<h2>Detalles del préstamo</h2>
 
 <div>
-    <h4>Prestamos</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,7 +35,9 @@
     </dl>
 </div>
 <div>
-    <h4>Libros prestados: </h4>
+    <hr />
+    <h3>Libros prestados: </h3>
+    <br />
     <div class="table-responsive">
         <table id="zero_config" class="table table-striped table-bordered">
             <thead>
@@ -49,18 +50,20 @@
             <tbody>
                 @foreach (var item in Model.DetallePrestamos)
                 {
-                    <tr>
-                        <td>@item.dtp_cantidad</td>
-                        <td>@item.Libros.lib_nombre</td>
-                        <td>@item.dtp_fecha_fin</td>
-                    </tr>                   
+                    if (item.dtp_fecha_dev == null)
+                    {
+                        <tr>
+                            <td>@item.dtp_cantidad</td>
+                            <td>@item.Libros.lib_nombre</td>
+                            <td>@item.dtp_fecha_fin</td>
+                        </tr>
+                    }
                 }
-
             </tbody>
         </table>
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.pre_codigo }) |
-    @Html.ActionLink("Back to List", "Index")
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.pre_codigo }) |*@
+    @Html.ActionLink("Regresar", "Index")
 </p>

@@ -6,6 +6,6 @@ namespace WebApplication.DesignPattern.Strategy.Prestamos
     public interface IPrestamoStrategy
     {
         void Add(DetallePrestamosDTO modelDTO, IUnitOfWork unitOfWork);
-
+        void Return(DetallePrestamosDTO modelDTO, IUnitOfWork unitOfWork);
     }
 }

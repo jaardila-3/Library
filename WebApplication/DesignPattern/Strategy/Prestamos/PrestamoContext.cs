@@ -15,5 +15,9 @@ namespace WebApplication.DesignPattern.Strategy.Prestamos
         {
             _strategy.Add(modelDTO, unitOfWork);
         }
+        public void Return(DetallePrestamosDTO modelDTO, IUnitOfWork unitOfWork)
+        {
+            _strategy.Return(modelDTO, unitOfWork);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using CommonComponents.DTOs;
 using DataAccess.Models;
 using System;
+using System.Linq;
 
 namespace WebApplication.DesignPattern.Strategy.Prestamos
 {
@@ -19,6 +20,15 @@ namespace WebApplication.DesignPattern.Strategy.Prestamos
             unitOfWork.odetallePrestamos.Add(entidad);
             unitOfWork.Save();          
 
+        }
+
+        public void Return(DetallePrestamosDTO modelDTO, IUnitOfWork unitOfWork)
+        {
+            var entidad = unitOfWork.odetallePrestamos.GetList().Where(x => x.Prestamos.pre_usuario == modelDTO.Prestamos.pre_usuario && x.dtp_libro == modelDTO.dtp_libro).FirstOrDefault();
+            entidad.dtp_fecha_dev = modelDTO.dtp_fecha_dev;
+
+            unitOfWork.odetallePrestamos.Update(entidad);
+            unitOfWork.Save();
         }
     }
 }
