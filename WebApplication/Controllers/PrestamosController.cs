@@ -9,6 +9,7 @@ using WebApplication.DesignPattern.Strategy.Prestamos;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class PrestamosController : Controller
     {
         //Controlador con inyección de dependencias y patrón unit of work

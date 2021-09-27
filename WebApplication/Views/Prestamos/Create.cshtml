@@ -13,6 +13,14 @@
     <script>
         $('.datepicker').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
     </script>
+    <!--Deshabilita Retroceso de la página-->
+    <script type="text/javascript">
+        window.onload = function () {
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button" //chrome
+            window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        }
+    </script>
 }
 
 <h2>Crear</h2>

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
+    [Authorize]
     public class AreasController : Controller
     {
         //Controlador con inyección de dependencias y patrón unit of work

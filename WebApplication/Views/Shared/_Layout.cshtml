@@ -11,15 +11,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("style", required: false)
-    <script type="text/javascript">
-        function deshabilitaRetroceso() {
-            window.location.hash = "no-back-button";
-            window.location.hash = "Again-No-back-button" //chrome
-            window.onhashchange = function () { window.location.hash = "no-back-button"; }
-        }
-    </script>
 </head>
-<body onload="deshabilitaRetroceso();">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -33,11 +26,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Áreas", "Index", "Areas")</li>
-                    <li>@Html.ActionLink("Libros", "Index", "Libros")</li>
-                    <li>@Html.ActionLink("Préstamos", "Index", "Prestamos")</li>
-                    <li>@Html.ActionLink("Sanciones", "Index", "Sanciones")</li>
-                    <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Áreas", "Index", "Areas")</li>
+                        <li>@Html.ActionLink("Libros", "Index", "Libros")</li>
+                        <li>@Html.ActionLink("Préstamos", "Index", "Prestamos")</li>
+                        <li>@Html.ActionLink("Sanciones", "Index", "Sanciones")</li>
+                        <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
