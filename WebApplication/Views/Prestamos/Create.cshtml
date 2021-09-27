@@ -5,17 +5,13 @@
 }
 @section style
 {
-    @Styles.Render("~/bundles/datepickercss")
+    @Styles.Render("~/bundles/datepickerMaterialcss")
 }
 @section scripts
 {
-    @Scripts.Render("~/bundles/datepickerjs")
+    @Scripts.Render("~/bundles/datepickerMaterialjs")
     <script>
-        jQuery('.datepicker').datepicker({
-            autoclose: true,
-            todayHighlight: true,
-            format: 'dd/mm/yyyy'
-        });
+        $('.datepicker').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
     </script>
 }
 

@@ -11,8 +11,15 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("style", required: false)
+    <script type="text/javascript">
+        function deshabilitaRetroceso() {
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button" //chrome
+            window.onhashchange = function () { window.location.hash = "no-back-button"; }
+        }
+    </script>
 </head>
-<body>
+<body onload="deshabilitaRetroceso();">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

@@ -6351,10 +6351,11 @@
     <Content Include="Views\Prestamos\Details.cshtml" />
     <Content Include="Views\Prestamos\ReturnBook.cshtml" />
     <Content Include="Views\Prestamos\_ListReturnBooks.cshtml" />
+    <Content Include="Views\Sanciones\Index.cshtml" />
+    <Content Include="Views\Sanciones\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Sanciones\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

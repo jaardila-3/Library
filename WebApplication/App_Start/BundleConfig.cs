@@ -59,12 +59,18 @@ namespace WebApplication
                         "~/assets/libs/datatables/media/js/jquery.dataTables.min.js",
                         "~/dist/js/pages/datatable/custom-datatable.js",
                         "~/dist/js/pages/datatable/datatable-basic.init.js"));
-            //datepicker
-            bundles.Add(new StyleBundle("~/bundles/datepickercss").Include(
+            //datepicker bootstrap
+            bundles.Add(new StyleBundle("~/bundles/datepickerBootstrapcss").Include(
                         "~/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"));
-            bundles.Add(new ScriptBundle("~/bundles/datepickerjs").Include(
+            bundles.Add(new ScriptBundle("~/bundles/datepickerBootstrapjs").Include(
                         "~/assets/libs/moment/moment.js",
                         "~/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"));
+            //datepicker material
+            bundles.Add(new StyleBundle("~/bundles/datepickerMaterialcss").Include(
+                        "~/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"));
+            bundles.Add(new ScriptBundle("~/bundles/datepickerMaterialjs").Include(
+                        "~/assets/libs/moment/moment.js",
+                        "~/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js"));
         }
     }
 }

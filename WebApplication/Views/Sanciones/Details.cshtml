@@ -1,0 +1,93 @@
+﻿@model CommonComponents.DTOs.SancionesDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Sanciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.san_dias_sancion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.san_dias_sancion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.san_fecha_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.san_fecha_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.san_fecha_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.san_fecha_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prestamos.pre_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestamos.pre_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prestamos.pre_fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestamos.pre_fecha)
+        </dd>
+
+    </dl>
+</div>
+
+
+<div>
+    <hr />
+    <h3>Libro devuelto después de la fecha de entrega: </h3>
+    <br />
+    <div class="table-responsive">
+        <table id="zero_config" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Libro</th>
+                    <th>Fecha de entrega</th>
+                    <th>Fecha de devolución</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Prestamos.DetallePrestamos)
+                {
+                    if (Model.san_fecha_inicio == item.dtp_fecha_dev)
+                    {
+                        <tr>
+                            <td>@item.dtp_cantidad</td>
+                            <td>@item.Libros.lib_nombre</td>
+                            <td>@item.dtp_fecha_fin</td>
+                            <td>@item.dtp_fecha_dev</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.san_codigo }) |*@
+    @Html.ActionLink("Regresar", "Index")
+</p>

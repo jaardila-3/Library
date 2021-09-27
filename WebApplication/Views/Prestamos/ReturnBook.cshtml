@@ -5,22 +5,19 @@
 }
 @section style
 {
-    @Styles.Render("~/bundles/datepickercss")
+    @Styles.Render("~/bundles/datepickerMaterialcss")
 }
 @section scripts
 {
-    @Scripts.Render("~/bundles/datepickerjs")
+    @Scripts.Render("~/bundles/datepickerMaterialjs")
     <script>
         $(document).ready(function () {
-            jQuery('.datepicker').datepicker({
-                autoclose: true,
-                todayHighlight: true,
-                format: 'dd/mm/yyyy'
-            });
-
+            //datepicker de material
+            $('.datepicker').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+            //cuando cambia el select list
             $('#Prestamos_pre_usuario').change(function () {
                 let pre_usuario = $(this).val();
-
+                //ajax
                 let url = "/Prestamos/ValidationPartialView?pre_usuario=" + pre_usuario;
                 $.get(url, function (response) {
                     $("#divPartial").html(response);

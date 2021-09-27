@@ -27,7 +27,8 @@ namespace WebApplication.Controllers
         {
             Session.Clear();//limpia la variables de session que se crearan mas adelante
             //obtenemos listado de los prestamos vigentes
-            var listEntidad = _unitOfWork.oprestamos.GetList().Where(x => x.pre_vigente == true);
+            var listEntidad = _unitOfWork.oprestamos.GetList();
+            listEntidad = listEntidad.Where(x => x.pre_vigente == true);
             //mapeamos la entidad a un DTO
             var listDTO = listEntidad.Select(x => _mapper.Map<PrestamosDTO>(x)).ToList();
             //retornamos el modelo y la vista
@@ -66,6 +67,15 @@ namespace WebApplication.Controllers
                 if (countVigente > 0)
                 {
                     ModelState.AddModelError("pre_usuario", "El Usuario tiene prestamos vigentes en el sistema");
+                    GetListUsuarios();
+                    return View("Create", modelDTO);
+                }
+                //validamos si el usuario tiene sanciones vigentes
+                var listSanciones = _unitOfWork.osanciones.GetList();
+                var countSancion = listSanciones.Where(x => x.Prestamos.pre_usuario == modelDTO.pre_usuario && x.san_fecha_fin > DateTime.Now).Count();
+                if (countSancion > 0)
+                {
+                    ModelState.AddModelError("pre_usuario", "El Usuario tiene sanciones vigentes en el sistema");
                     GetListUsuarios();
                     return View("Create", modelDTO);
                 }
